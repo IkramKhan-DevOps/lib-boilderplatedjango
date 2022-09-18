@@ -1,0 +1,48 @@
+
+<div class="topnav">
+    <div class="container-fluid">
+        <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+
+            <div class="collapse navbar-collapse" id="topnav-menu-content">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle arrow-none" href="{% url 'admins:dashboard' %}">
+                            <i class="bx bx-home-circle mr-2"></i>Dashboard
+                        </a>
+                    </li>
+
+
+                    {# Apps #}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bx bx-user mr-2"></i>User Control
+                            <div class="arrow-down"></div>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-pages">
+                            <a href="{% url 'admins:user-list' %}" class="dropdown-item">Users</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#">
+                            <i class="mdi mdi-cash-100 mr-2"></i> Orders
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#">
+                            <i class="bx bx-gift mr-2"></i>Gift Shop
+                        </a>
+                    </li>
+
+                     <li class="nav-item">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#">
+                            <i class="bx bx-globe mr-2"></i>Countries
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

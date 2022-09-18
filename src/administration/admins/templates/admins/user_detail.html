@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block subtitle %}
+    {{ user.username }}
+{% endblock %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+        <p><a href="{% url 'admins:user-list' %}"><i class="fa fa-arrow-left"></i> Go Back</a></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    {# IMAGE DIV #}
+                    <div class="text-center">
+                        {% if user.profile_image %}
+                            <img class="rounded-circle" src="{{ user.profile_image.url }}" height="150px"
+                                 alt="user-image">
+                        {% else %}
+                            <img class="rounded-circle" src="{% static 'core/images/base/no-user.png' %}"
+                                 height="150px" alt="no-user-image">
+                        {% endif %}
+                    </div>
+
+                    {# NAME AND OTHER #}
+                    <div class="text-center mt-2">
+                        <h5 class="mb-0">{{ user.get_full_name }}
+                            {% if user.is_active %}
+                                <i class="fa fa-check-circle text-success"></i>
+                            {% endif %}
+                        </h5>
+                        <p class="fw-light text-muted mb-0">( {{ user.username }} )</p>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col">
+                            <p class="mb-0 text-center h3"><i class="mdi mdi-email"></i></p>
+                            <p class="mb-0 text-center h5">Email</p>
+                            <p class="mb-0 text-center">{{ user.email }}</p>
+                        </div>
+                        <div class="col">
+                            <p class="mb-0 text-center h3"><i class="mdi mdi-phone"></i></p>
+                            <p class="mb-0 text-center h5">Phone</p>
+                            <p class="mb-0 text-center">{{ user.phone_number }}</p>
+                        </div>
+                        <div class="col text-center">
+                            <p class="mb-0 text-center h3"><i class="mdi mdi-package"></i></p>
+                            <p class="mb-0 text-center h5">Package</p>
+                            {% if user.current_subscription %}
+                                <a class="text-success"
+                                   href="{% url 'admins:package-detail' user.current_subscription.package.pk %}">
+                                    <b>{{ user.current_subscription.package.name }}</b>
+                                </a>
+                            {% else %}
+                                <p class="mb-0 text-center text-danger">Not subscribed</p>
+                            {% endif %}
+                        </div>
+                        <div class="col">
+                            <p class="mb-0 text-center h3"><i class="mdi mdi-link"></i></p>
+                            <p class="mb-0 text-center h5">Referral</p>
+                            {% if user.referred_by %}
+                                <p class="mb-0 text-center">
+                                    <a href="{% url 'admins:user-detail' user.referred_by.pk %}">
+                                        {{ user.referred_by.username }}
+                                    </a>
+                                </p>
+                            {% else %}
+                                <p class="mb-0 text-center text-danger">Not Linked</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="col">
+                            <p class="mb-0 text-center h3"><i class="fa fa-user-edit"></i></p>
+                            <p class="mb-0 text-center h5">Profile</p>
+                            <p class="mb-0 text-center">
+                                <a href="{% url 'admins:user-update' user.pk %}">Update</a>
+                            </p>
+                        </div>
+
+                        <div class="col">
+                            <p class="mb-0 text-center h3"><i class="fa fa-user-lock"></i></p>
+                            <p class="mb-0 text-center h5">Password</p>
+                            <p class="mb-0 text-center text-danger">
+                                <a href="{% url 'admins:user-password-reset-view' user.pk %}">Change</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# STATISTICS #}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body border-bottom">
+                    <p class="card-title mb-0">User Statistics</p>
+                </div>
+                <div class="card-body">
+
+                    {% if statistic %}
+                        <div class="row">
+
+                            <div class="col border-right">
+                                <p class="mb-0 text-center h3 text-success"><i class="mdi mdi-arrow-up"></i></p>
+                                <p class="mb-0 text-center small">Current TRX</p>
+                                <p class="mb-0 text-center h4">{{ statistic.current_amount|floatformat:2 }}</p>
+                            </div>
+
+                            <div class="col">
+                                <p class="mb-0 text-center h3 text-danger"><i class="mdi mdi-arrow-down"></i>
+                                </p>
+                                <p class="mb-0 text-center small">Withdrawal TRX</p>
+                                <p class="mb-0 text-center h4">{{ statistic.withdrawn_amount|floatformat:2 }}</p>
+                            </div>
+
+                            <div class="col">
+                                <p class="mb-0 text-center h3"><i class="fa fa-coins text-warning"></i></p>
+                                <p class="mb-0 text-center small">Generated TRX</p>
+                                <p class="mb-0 text-center h4">{{ statistic.generated_amount|floatformat:2 }}</p>
+                            </div>
+
+                            <div class="col">
+                                <p class="mb-0 text-center h3"><i class="mdi mdi-share text-primary"></i></p>
+                                <p class="mb-0 text-center small">Referral TRX</p>
+                                <p class="mb-0 text-center h4">{{ statistic.referrals_amount }}</p>
+                            </div>
+
+                            <div class="col">
+                                <p class="mb-0 text-center h3"><i class="mdi mdi-format-list-checks"></i></p>
+                                <p class="mb-0 text-center small">Referral Total</p>
+                                <p class="mb-0 text-center h4">{{ statistic.referrals_total }}</p>
+                            </div>
+
+                            <div class="col">
+                                <p class="mb-0 text-center h3"><i class="mdi mdi-format-list-bulleted-type"></i>
+                                </p>
+                                <p class="mb-0 text-center small">Subscription Total</p>
+                                <p class="mb-0 text-center h4">{{ statistic.subscription_total }}</p>
+                            </div>
+
+                            <div class="col">
+                                <p class="mb-0 text-center h3"><i class="mdi mdi-format-list-numbered"></i>
+                                </p>
+                                <p class="mb-0 text-center small">Withdrawals Total</p>
+                                <p class="mb-0 text-center h4">{{ statistic.withdrawals_total }}</p>
+                            </div>
+
+                        </div>
+                    {% else %}
+                        <p class="text-danger h4 mb-0">Statistics are not available for this account - please
+                            consult
+                            developers</p>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+

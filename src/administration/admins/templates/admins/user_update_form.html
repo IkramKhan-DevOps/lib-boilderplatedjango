@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block subtitle %}
+    Update {{ object.username }}
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-12">
+        <p><a href="{% url 'admins:user-list' %}"><i class="fa fa-arrow-left"></i> Go Back</a></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="">
+                        {% if form.instance.profile_image %}
+                            <img class="rounded-circle" src="{{ form.instance.profile_image.url }}" height="150px" alt="user-image">
+                        {% else %}
+                            <img class="rounded-circle" src="{% static 'core/images/base/no-user.png' %}"
+                                 height="150px" alt="no-user-image">
+                        {% endif %}
+                    </div>
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {{ form|crispy }}
+                        <div class="">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

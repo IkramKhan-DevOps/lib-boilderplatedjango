@@ -5,7 +5,7 @@
 </p>
 <hr>
 
-# PROJECT NAME 😕 
+# PROJECT NAME 😕
 
 _application tagline here_
 
