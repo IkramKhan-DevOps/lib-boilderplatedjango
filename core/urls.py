@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 urlpatterns = [
 
@@ -29,4 +30,10 @@ urlpatterns = [
     path('accounts/', include('src.accounts.urls', namespace='accounts')),
     path('admins/', include('src.administration.admins.urls', namespace='admins')),
 
+]
+
+urlpatterns += [
+    path('under-construction/', TemplateView.as_view(template_name='000.html')),
+    path('404/', TemplateView.as_view(template_name='404.html')),
+    path('500/', TemplateView.as_view(template_name='500.html')),
 ]

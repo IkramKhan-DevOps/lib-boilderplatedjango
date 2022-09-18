@@ -2,8 +2,7 @@ django
 django-filter
 
 django-allauth
-python-dateutil~=2.8.2
-django-phonenumber-field
+python-dateutil
 
 markdown
 django-resized

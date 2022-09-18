@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4(7-hd9uf%#)abq+lcsfyu_okdjyr%fv$n6-=!ugas&g_1+vg('
 DEBUG = True
 AUTH_USER_MODEL = 'accounts.User'
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 GOOGLE_CALLBACK_ADDRESS = "http://127.0.0.1:8000/accounts/google/login/callback/"
 
 INSTALLED_APPS = [
@@ -114,10 +114,10 @@ USE_TZ = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'maihandost.com@gmail.com'
+EMAIL_HOST_USER = 'donald.duck0762@gmail.com'
 EMAIL_HOST_PASSWORD = 'mghulhfjugnqwuoz'
 EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = 'Support-Team <maihandost.com@gmail.com>'
+DEFAULT_FROM_EMAIL = 'Support-Team <mark@exarth.com>'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
