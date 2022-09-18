@@ -10,7 +10,7 @@
 {% block content %}
     <div class="row">
         <div class="col-sm-12">
-        <p><a href="{% url 'admins:user-list' %}"><i class="fa fa-arrow-left"></i> Go Back</a></p>
+            <p><a href="{% url 'admins:user-list' %}"><i class="fa fa-arrow-left"></i> Go Back</a></p>
         </div>
     </div>
 
@@ -32,12 +32,13 @@
 
                     {# NAME AND OTHER #}
                     <div class="text-center mt-2">
-                        <h5 class="mb-0">{{ user.get_full_name }}
+                        <h5 class="mb-0">
+                            {{ user.get_full_name }} - ( {{ user.username }} )
                             {% if user.is_active %}
                                 <i class="fa fa-check-circle text-success"></i>
                             {% endif %}
                         </h5>
-                        <p class="fw-light text-muted mb-0">( {{ user.username }} )</p>
+                        <p class="fw-light text-muted mb-0">registered on > {{ user.date_joined }}</p>
                     </div>
 
                     <div class="row mt-4">
@@ -52,29 +53,24 @@
                             <p class="mb-0 text-center">{{ user.phone_number }}</p>
                         </div>
                         <div class="col text-center">
-                            <p class="mb-0 text-center h3"><i class="mdi mdi-package"></i></p>
-                            <p class="mb-0 text-center h5">Package</p>
-                            {% if user.current_subscription %}
-                                <a class="text-success"
-                                   href="{% url 'admins:package-detail' user.current_subscription.package.pk %}">
-                                    <b>{{ user.current_subscription.package.name }}</b>
-                                </a>
-                            {% else %}
-                                <p class="mb-0 text-center text-danger">Not subscribed</p>
-                            {% endif %}
+                            <p class="mb-0 text-center h3"><i class="mdi mdi-shield-account"></i></p>
+                            <p class="mb-0 text-center h5">Access Level</p>
+                            <p class="mb-0 text-center">
+                                <b>
+                                    {% if user.is_superuser and user.is_staff %}
+                                        Admin
+                                    {% elif user.is_staff %}
+                                        Staff
+                                    {% else %}
+                                        User
+                                    {% endif %}
+                                </b>
+                            </p>
                         </div>
-                        <div class="col">
-                            <p class="mb-0 text-center h3"><i class="mdi mdi-link"></i></p>
-                            <p class="mb-0 text-center h5">Referral</p>
-                            {% if user.referred_by %}
-                                <p class="mb-0 text-center">
-                                    <a href="{% url 'admins:user-detail' user.referred_by.pk %}">
-                                        {{ user.referred_by.username }}
-                                    </a>
-                                </p>
-                            {% else %}
-                                <p class="mb-0 text-center text-danger">Not Linked</p>
-                            {% endif %}
+                        <div class="col text-center">
+                            <p class="mb-0 text-center h3"><i class="mdi mdi-security"></i></p>
+                            <p class="mb-0 text-center h5">Last Login</p>
+                            <p class="mb-0 text-center">{{ user.last_login }}</p>
                         </div>
 
                         <div class="col">
