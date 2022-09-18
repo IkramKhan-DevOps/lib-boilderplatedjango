@@ -21,8 +21,8 @@ Then do next ...
 
 class User(AbstractUser):
     profile_image = ResizedImageField(
-        upload_to='accounts/images/profiles/', null=True, blank=True, size=[100, 100], quality=75, force_format='PNG',
-        help_text='size of logo must be 100*100 and format must be png image file', crop=['middle', 'center']
+        upload_to='accounts/images/profiles/', null=True, blank=True, size=[250, 250], quality=75, force_format='PNG',
+        help_text='size of logo must be 250*250 and format must be png image file', crop=['middle', 'center']
     )
     phone_number = models.CharField(max_length=30, null=True, blank=True)
 

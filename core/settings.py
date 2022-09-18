@@ -11,13 +11,25 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-4(7-hd9uf%#)abq+lcsfyu_okdjyr%fv$n6-=!ugas&g_1+vg('
-DEBUG = True
+env = environ.Env(
+    DEBUG=(bool, True)
+)
+environ.Env.read_env(BASE_DIR / '.env')
+
+DEBUG = False
+SERVER = False
 AUTH_USER_MODEL = 'accounts.User'
-ALLOWED_HOSTS = ['*']
-GOOGLE_CALLBACK_ADDRESS = "http://127.0.0.1:8000/accounts/google/login/callback/"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/accounts/cross-auth/'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SECRET_KEY = env('DJANGO_SECRET_KEY')
+ALLOWED_HOSTS = [env('ALLOWED_HOSTS_TEST'), env('ALLOWED_HOSTS')]
+GOOGLE_CALLBACK_ADDRESS = env('GOOGLE_CALLBACK_ADDRESS_TEST')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -101,24 +113,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL = '/accounts/cross-auth/'
-LOGOUT_REDIRECT_URL = '/accounts/login/'
-
+""" INTERNATIONALIZATION --------------------------------------------------------------------------------"""
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Tashkent'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+""" EMAIL CONFIGURATION --------------------------------------------------------------------------------"""
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'donald.duck0762@gmail.com'
-EMAIL_HOST_PASSWORD = 'mghulhfjugnqwuoz'
-EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = 'Support-Team <mark@exarth.com>'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = env('EMAIL_PORT')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
+""" RESIZER IMAGE --------------------------------------------------------------------------------"""
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
@@ -127,7 +138,6 @@ STATIC_ROOT = BASE_DIR / 'assets'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 """ RESIZER IMAGE --------------------------------------------------------------------------------"""
 DJANGORESIZED_DEFAULT_SIZE = [1920, 1080]

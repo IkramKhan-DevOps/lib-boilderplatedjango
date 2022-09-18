@@ -17,23 +17,28 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+# CORE URLS
 urlpatterns = [
 
-    # SYS URLS
+    # SYS URLS > remove in extreme security
     path('admin/', admin.site.urls),
 
     # API URLS
     path('accounts/', include('allauth.urls')),
 
-    # APP URLS
+    # APPS URLS
     path('', include('src.website.urls', namespace='website')),
     path('accounts/', include('src.accounts.urls', namespace='accounts')),
     path('admins/', include('src.administration.admins.urls', namespace='admins')),
-
 ]
 
+# UNIVERSAL URLS
 urlpatterns += [
+    # 404-500-00 PAGES
     path('under-construction/', TemplateView.as_view(template_name='000.html')),
     path('404/', TemplateView.as_view(template_name='404.html')),
     path('500/', TemplateView.as_view(template_name='500.html')),
+
+    # REMOVE THIS WHEN HOME VIEW CREATED
+    path('', TemplateView.as_view(template_name='000.html')),
 ]
