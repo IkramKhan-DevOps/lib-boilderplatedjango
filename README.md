@@ -11,12 +11,12 @@ _application tagline here_
 
 application detailed down description here
 
-## Applications
+# Applications
 
 1. Website
 2. Administration
-3. Staff Managemengt
-4. Root Administartion
+3. Staff Management
+4. Root Administration
 
 # Tools and Technologies
 
@@ -28,35 +28,53 @@ application detailed down description here
 | Databases | SQLite, PostGre                               |
 | Server    | Linux based ubuntu server (aws/digital ocean) |
 
-## Development Phases
+# Development Phases
 
-1. [ ]  Application design, theme and authentication
-2. [ ]  Application core requirements implementation phase - 1 (standard)
-3. [ ]  Application core requirements implementation phase - 1 (Full)
-4. [ ]  Application testing, optimization and security checks
-5. [ ]  Deployment
+1. [ ]  Application requirement engineering
+2. [ ]  Application design, theme and prototyping
+3. [ ]  Application core requirements implementation phase - 1 (core)
+4. [ ]  Application core requirements implementation phase - 2 (api and other external services)
+5. [ ]  Application core requirements implementation phase - 3 (integrations)
+6. [ ]  Application testing, optimization and security checks
+7. [ ]  Application Deployment
+
+# Modules
+
+1. [ ]  Authentication and Authorization
+2. [ ]  Access and Permission Control System
+3. [ ]  Notification Alerts and POP-ups
+
+# Update 1 (0.1)
 
 ## Requirements
 
 Please check the detailed down requirements here wrt iterations
 
-## Functional
+### Functional
 
 1. [ ]  Login
 2. [ ]  Signup
 3. [ ]  Dashboard
 
-## Non-Functional
+### Non-Functional
 
 1. Security
 2. Scalability
 3. Optimization
 
-<hr>
-
-# Update 1 (0.1)
-
 ---
+
+# EXTRA
+
+## How to run locally
+
+```
+install python > 3.8
+
+cd project_directory
+pip install -r requirements.txt
+py manage.py runserver
+```
 
 <h4>ALERT !</h4>
 <p>Application is developed by <a href="https://github.com/IkramKhan-DevOps/">MARK I</a> at <b><a href="https://exarth.com">Exarth</a></b>.
