@@ -27,13 +27,16 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/accounts/cross-auth/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SECRET_KEY = env('DJANGO_SECRET_KEY')
-ALLOWED_HOSTS = [env('ALLOWED_HOSTS_TEST'), env('ALLOWED_HOSTS')]
-GOOGLE_CALLBACK_ADDRESS = env('GOOGLE_CALLBACK_ADDRESS_TEST')
+SECRET_KEY = env('SECRET_KEY')
+ENVIRONMENT = env('ENVIRONMENT')
+ALLOWED_HOSTS = [env('ALLOWED_HOST')]
+GOOGLE_CALLBACK_ADDRESS = env('GOOGLE_CALLBACK_URL')
+SITE_ID = int(env('SITE_ID'))
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -91,12 +94,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if ENVIRONMENT == 'server':
+    DATABASES = {
+        'default': {
+            'ENGINE': env('DB_ENGINE'),
+            'NAME': env('DB_NAME'),
+            'USER': env('DB_USER'),
+            'PASSWORD': env('DB_PASS'),
+            'HOST': env('DB_HOST'),
+            'PORT': env('DB_PORT'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -127,7 +142,7 @@ EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = env('EMAIL_PORT')
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+DEFAULT_FROM_EMAIL = "noreply@thestaffmanager.com"
 
 """ RESIZER IMAGE --------------------------------------------------------------------------------"""
 STATIC_URL = '/static/'
@@ -173,4 +188,30 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 OLD_PASSWORD_FIELD_ENABLED = True
 LOGOUT_ON_PASSWORD_CHANGE = False
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+
+"""
+TEST DATA FOR >ENV
+------------------------------------------------
+ENVIRONMENT=local
+DB_ENGINE=django.db.backends.postgresql_psycopg2
+DB_HOST=localhost
+DB_USER=thestaffmanagerdbrootuser
+DB_PASS=thestaffmanagerdbrootuserpassword
+DB_NAME=thestaffmanagerdb
+DB_PORT=django.db.backends.postgresql_psycopg2
+EMAIL_USE_TLS=True
+EMAIL_HOST=smtp.gmail.com
+EMAIL_HOST_USER=donald.duck0762@gmail.com
+EMAIL_HOST_PASSWORD=iblqezaitfuxxbfg
+EMAIL_PORT=587
+BASE_URL=http://127.0.0.1:8000
+DEFAULT_FROM_EMAIL=Support-Team <mark@exarth.com>
+DEBUG=True
+SECRET_KEY=YUwsjlxk30PYf6dovmiUK8c0i1MARKIiejYh7kSDv3fiBq2mlWmeXap
+TIME_ZONE=Asia/Karachi
+GOOGLE_CALLBACK_URL=http://127.0.0.1:8000/accounts/google/login/callback/
+ALLOWED_HOST=127.0.0.1
+SITE_ID=1
+"""
