@@ -1,5 +1,5 @@
-django
-django-filter
+django~=4.1.5
+django-filter~=22.1
 
 django-allauth
 python-dateutil
@@ -10,9 +10,10 @@ python-decouple
 django-ckeditor
 django-crispy-forms
 pillow
-six
+six~=1.16.0
 Faker
 
 django-phonenumber-field
 django-phonenumbers
 django-environ
+djangorestframework-jwt~=1.11.0
