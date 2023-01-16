@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'rest_auth.registration',
-    'rest_framework_swagger',
+    'drf_yasg',
 
     'oauth2_provider',
     'social_django',
