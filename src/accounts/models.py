@@ -6,7 +6,6 @@ from django.dispatch import receiver
 
 from django_resized import ResizedImageField
 
-
 """
 At the start please be careful to start migrations
 --------------------------------------------------
@@ -20,11 +19,14 @@ Then do next ...
 
 
 class User(AbstractUser):
+    email = models.EmailField(unique=True, max_length=200)
     profile_image = ResizedImageField(
         upload_to='accounts/images/profiles/', null=True, blank=True, size=[250, 250], quality=75, force_format='PNG',
         help_text='size of logo must be 250*250 and format must be png image file', crop=['middle', 'center']
     )
     phone_number = models.CharField(max_length=30, null=True, blank=True)
+    REQUIRED_FIELDS = ["username"]
+    USERNAME_FIELD = "email"
 
     class Meta:
         ordering = ['-id']
@@ -50,5 +52,3 @@ def on_user_registration(sender, instance, created, **kwargs):
     :return:
     """
     pass
-
-
