@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'rest_auth.registration',
-    'rest_framework_jwt',
+    'rest_framework_swagger',
 
     'src.api.apps.ApiConfig',
     'src.website.apps.WebsiteConfig',
@@ -162,7 +162,6 @@ STATIC_ROOT = BASE_DIR / 'assets'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
 """ RESIZER IMAGE --------------------------------------------------------------------------------"""
 DJANGORESIZED_DEFAULT_SIZE = [1920, 1080]
 DJANGORESIZED_DEFAULT_QUALITY = 75
@@ -199,30 +198,25 @@ OLD_PASSWORD_FIELD_ENABLED = True
 LOGOUT_ON_PASSWORD_CHANGE = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 """_______________________REST FRAMEWORK SETTINGS ________________________________________________"""
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
+
+REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': 'src.api.serializer.MyCustomSerializer',
 }
+
 """-----------------------------------------------------------------------------------------------"""
 """---------------------------JWT  Setting ________________________________________"""
 
 JWT_AUTH = {
     'JWT_ENCODE_HANDLER':
-    'rest_framework_jwt.utils.jwt_encode_handler',
+        'rest_framework_jwt.utils.jwt_encode_handler',
     'JWT_DECODE_HANDLER':
-    'rest_framework_jwt.utils.jwt_decode_handler',
+        'rest_framework_jwt.utils.jwt_decode_handler',
     'JWT_PAYLOAD_HANDLER':
-    'rest_framework_jwt.utils.jwt_payload_handler',
+        'rest_framework_jwt.utils.jwt_payload_handler',
     'JWT_PAYLOAD_GET_USER_ID_HANDLER':
-    'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler',
+        'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler',
     'JWT_RESPONSE_PAYLOAD_HANDLER':
-    'rest_framework_jwt.utils.jwt_response_payload_handler',
+        'rest_framework_jwt.utils.jwt_response_payload_handler',
     'JWT_SECRET_KEY': env('SECRET_KEY'),
     'JWT_GET_USER_SECRET_KEY': None,
     'JWT_PUBLIC_KEY': None,
