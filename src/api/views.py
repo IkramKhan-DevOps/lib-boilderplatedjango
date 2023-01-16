@@ -1,7 +1,6 @@
-from rest_auth.views import LoginView
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
 
-from src.api.serializer import MyCustomSerializer
 
-
-class MyLoginView(LoginView):
-    serializer_class = MyCustomSerializer
+class FaceBookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter
