@@ -13,6 +13,8 @@ import datetime
 from pathlib import Path
 import environ
 
+""" APPLICATION CONFIGURATIONS """
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(
     DEBUG=(bool, True)
@@ -21,6 +23,7 @@ environ.Env.read_env(BASE_DIR / '.env')
 
 DEBUG = True
 SERVER = False
+ROOT_URLCONF = 'core.urls'
 AUTH_USER_MODEL = 'accounts.User'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
@@ -34,6 +37,7 @@ GOOGLE_CALLBACK_ADDRESS = env('GOOGLE_CALLBACK_URL')
 SITE_ID = int(env('SITE_ID'))
 
 INSTALLED_APPS = [
+    # DJANGO APPS
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -43,29 +47,32 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
-    # REQUIRED_APPLICATIONS
+    # STARTER APPS
     'crispy_forms',
     'ckeditor',
     'django_filters',
 
+    # WEB APPS
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
 
+    # REST APPS
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
     'dj_rest_auth.registration',
     'drf_yasg',
 
-    'src.api.apps.ApiConfig',
+    # YOUR APPS
     'src.website.apps.WebsiteConfig',
     'src.accounts.apps.AccountsConfig',
     'src.administration.admins.apps.AdministrationAdminConfig'
 ]
 
 MIDDLEWARE = [
+    # DJANGO MIDDLEWARES
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -73,14 +80,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # YOUR MIDDLEWARES
 ]
 
 AUTHENTICATION_BACKENDS = [
+    # DJANGO BACKENDS
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-]
 
-ROOT_URLCONF = 'core.urls'
+    # YOUR BACKENDS
+]
 
 TEMPLATES = [
     {
@@ -145,10 +155,10 @@ USE_TZ = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_HOST_USER = "saqibahmad778866@gmail.com"
-EMAIL_HOST_PASSWORD = "yizvykxigmgvkdns"
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = env('EMAIL_PORT')
-DEFAULT_FROM_EMAIL = "saqibahmad778866@gmail.com"
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
 """ RESIZER IMAGE --------------------------------------------------------------------------------"""
 STATIC_URL = '/static/'
@@ -172,19 +182,6 @@ DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 
 """ ALL-AUTH SETUP --------------------------------------------------------------------------------"""
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-}
-
 ACCOUNT_LOGOUT_ON_GET = True
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -194,30 +191,3 @@ ACCOUNT_USERNAME_REQUIRED = False
 OLD_PASSWORD_FIELD_ENABLED = True
 LOGOUT_ON_PASSWORD_CHANGE = False
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-
-"""
-
-
-TEST DATA FOR >ENV
-------------------------------------------------
-ENVIRONMENT=local
-DB_ENGINE=django.db.backends.postgresql_psycopg2
-DB_HOST=localhost
-DB_USER=thestaffmanagerdbrootuser
-DB_PASS=thestaffmanagerdbrootuserpassword
-DB_NAME=thestaffmanagerdb
-DB_PORT=django.db.backends.postgresql_psycopg2
-EMAIL_USE_TLS=True
-EMAIL_HOST=smtp.gmail.com
-EMAIL_HOST_USER=donald.duck0762@gmail.com
-EMAIL_HOST_PASSWORD=iblqezaitfuxxbfg
-EMAIL_PORT=587
-BASE_URL=http://127.0.0.1:8000
-DEFAULT_FROM_EMAIL=Support-Team <mark@exarth.com>
-DEBUG=True
-SECRET_KEY=YUwsjlxk30PYf6dovmiUK8c0i1MARKIiejYh7kSDv3fiBq2mlWmeXap
-TIME_ZONE=Asia/Karachi
-GOOGLE_CALLBACK_URL=http://127.0.0.1:8000/accounts/google/login/callback/
-ALLOWED_HOST=127.0.0.1
-SITE_ID=1
-"""
