@@ -24,9 +24,12 @@ from src.api.views import FaceBookLogin
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="API",
+        title="Your API Network",
         default_version='v1',
         description="API documentation",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@snippets.local"),
+        license=openapi.License(name="BSD License"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
@@ -56,14 +59,15 @@ urlpatterns += [
     path('', TemplateView.as_view(template_name='000.html')),
 ]
 
+# Swagger
+urlpatterns += [
+    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+]
 
-# Swagger and Exarth Rest Auth Urls
-urlpatterns +=[
-
-    path('rest-auth/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-
-    re_path('rest-auth/registration/', include('exarth_rest_auth.registration.urls')),
-    re_path('rest-auth/', include('exarth_rest_auth.urls')),
+urlpatterns += [
+    re_path('rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    re_path('rest-auth/', include('dj_rest_auth.urls')),
     re_path('rest-auth/facebook/$', FaceBookLogin.as_view(), name='fb_login'),
 ]

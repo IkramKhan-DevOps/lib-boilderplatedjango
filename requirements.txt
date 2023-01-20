@@ -1,23 +1,20 @@
-django~=4.1.5
-django-filter~=22.1
-
-django-allauth~=0.52.0
+six
+Faker
+pillow
+markdown
 python-dateutil
 
-markdown
+django
+django-environ
+django-filter
+django-allauth
 django-resized
 python-decouple
 django-ckeditor
 django-crispy-forms
-pillow
-six~=1.16.0
-Faker
 
-django-phonenumber-field
-django-phonenumbers
-django-environ
-djangorestframework-jwt~=1.11.0
-DateTime~=5.0
-djangorestframework~=3.14.0
-exarth-rest-auth
+djangorestframework
+djangorestframework-jwt
+dj-rest-auth
+django-rest-swagger
 drf_yasg

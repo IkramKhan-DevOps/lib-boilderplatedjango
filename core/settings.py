@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import datetime
 from pathlib import Path
-
-import datetime as datetime
 import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,7 +47,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'django_filters',
-    'phonenumber_field',
 
     'allauth',
     'allauth.account',
@@ -58,8 +55,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
-    'exarth_rest_auth',
-    'exarth_rest_auth.registration',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
     'drf_yasg',
 
     'src.api.apps.ApiConfig',

@@ -1,5 +1,5 @@
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
-from exarth_rest_auth.registration.views import SocialLoginView
+from dj_rest_auth.registration.views import SocialLoginView
 
 
 class FaceBookLogin(SocialLoginView):
