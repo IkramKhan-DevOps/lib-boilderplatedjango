@@ -18,3 +18,5 @@ djangorestframework-jwt
 dj-rest-auth
 django-rest-swagger
 drf_yasg
+
+django-browser-reload

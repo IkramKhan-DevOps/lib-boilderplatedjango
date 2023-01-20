@@ -23,6 +23,7 @@ from rest_framework import permissions
 from core.config import (
     APP_NAME, APP_DESC, APP_VERSION, APP_TERMS, APP_CONTACT, APP_LICENSE
 )
+from core.settings import ENVIRONMENT
 
 """ TO LEARN SWAGGER - https://drf-yasg.readthedocs.io/en/stable/readme.html """
 schema_view = get_schema_view(
@@ -73,3 +74,8 @@ urlpatterns += [
     path('accounts/', include('src.accounts.urls', namespace='accounts')),
     path('admins/', include('src.administration.admins.urls', namespace='admins')),
 ]
+
+if ENVIRONMENT != 'server':
+    urlpatterns += [
+        path("__reload__/", include("django_browser_reload.urls"))
+    ]
