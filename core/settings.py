@@ -58,13 +58,9 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
-    'rest_auth.registration',
+    'exarth_rest_auth',
+    'exarth_rest_auth.registration',
     'drf_yasg',
-
-    'oauth2_provider',
-    'social_django',
-    'rest_framework_social_oauth2',
 
     'src.api.apps.ApiConfig',
     'src.website.apps.WebsiteConfig',
@@ -152,10 +148,10 @@ USE_TZ = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = "saqibahmad778866@gmail.com"
+EMAIL_HOST_PASSWORD = "yizvykxigmgvkdns"
 EMAIL_PORT = env('EMAIL_PORT')
-DEFAULT_FROM_EMAIL = "noreply@thestaffmanager.com"
+DEFAULT_FROM_EMAIL = "saqibahmad778866@gmail.com"
 
 """ RESIZER IMAGE --------------------------------------------------------------------------------"""
 STATIC_URL = '/static/'
@@ -200,7 +196,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 OLD_PASSWORD_FIELD_ENABLED = True
 LOGOUT_ON_PASSWORD_CHANGE = False
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 """
 

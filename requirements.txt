@@ -17,6 +17,7 @@ django-phonenumber-field
 django-phonenumbers
 django-environ
 djangorestframework-jwt~=1.11.0
-django-rest-auth~=0.9.5
 DateTime~=5.0
 djangorestframework~=3.14.0
+exarth-rest-auth
+drf_yasg
