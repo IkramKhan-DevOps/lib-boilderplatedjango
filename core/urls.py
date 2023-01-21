@@ -20,50 +20,62 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
-from src.api.views import FaceBookLogin
+from core.config import (
+    APP_NAME, APP_DESC, APP_VERSION, APP_TERMS, APP_CONTACT, APP_LICENSE
+)
+from core.settings import ENVIRONMENT
 
+""" TO LEARN SWAGGER - https://drf-yasg.readthedocs.io/en/stable/readme.html """
 schema_view = get_schema_view(
     openapi.Info(
-        title="API",
-        default_version='v1',
-        description="API documentation",
+        title=APP_NAME,
+        default_version=APP_VERSION,
+        description=APP_DESC,
+        terms_of_service=APP_TERMS,
+        contact=openapi.Contact(email=APP_CONTACT),
+        license=openapi.License(name=APP_LICENSE),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
-# CORE URLS
+
+# EXTERNAL APPS URLS
 urlpatterns = [
 
-    # SYS URLS > remove in extreme security
+    # DJANGO URLS > remove in extreme security
     path('admin/', admin.site.urls),
 
     # API URLS
     path('accounts/', include('allauth.urls')),
 
-    # APPS URLS
-    path('api/', include('src.api.urls', namespace='api')),
-    path('', include('src.website.urls', namespace='website')),
+    # SWAGGER
+    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
+    # REST-AUTH URLS
+    re_path('rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    re_path('rest-auth/', include('dj_rest_auth.urls')),
+]
+
+# universal urls
+urlpatterns += [
+    path('under-construction/', TemplateView.as_view(template_name='under-construction.html')),  # use: for page under-construction
+    path('404/', TemplateView.as_view(template_name='404.html')),  # use: for page 404
+    path('500/', TemplateView.as_view(template_name='500.html')),  # use: for page 500
+
+    # REMOVE THIS WHEN HOME VIEW CREATED
+    path('', TemplateView.as_view(template_name='dev/starter-page.html')),  # use: for home page/remove this
+]
+
+# your apps urls
+urlpatterns += [
+    # path('', include('src.website.urls', namespace='website')),
     path('accounts/', include('src.accounts.urls', namespace='accounts')),
     path('admins/', include('src.administration.admins.urls', namespace='admins')),
 ]
-# UNIVERSAL URLS
-urlpatterns += [
-    # 404-500-00 PAGES
-    path('under-construction/', TemplateView.as_view(template_name='000.html')),
-    path('404/', TemplateView.as_view(template_name='404.html')),
-    path('500/', TemplateView.as_view(template_name='500.html')),
-    # REMOVE THIS WHEN HOME VIEW CREATED
-    path('', TemplateView.as_view(template_name='000.html')),
-]
 
-
-# Swagger and Exarth Rest Auth Urls
-urlpatterns +=[
-
-    path('rest-auth/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-
-    re_path('rest-auth/registration/', include('exarth_rest_auth.registration.urls')),
-    re_path('rest-auth/', include('exarth_rest_auth.urls')),
-    re_path('rest-auth/facebook/$', FaceBookLogin.as_view(), name='fb_login'),
-]
+if ENVIRONMENT != 'server':
+    urlpatterns += [
+        path("__reload__/", include("django_browser_reload.urls"))
+    ]
