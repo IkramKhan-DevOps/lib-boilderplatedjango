@@ -9,19 +9,19 @@
             <div class="navbar-brand-box">
                 <a href="/" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="{% static 'core/images/logos/logo-red.png' %}" alt="" height="35">
+                                    <img src="{% static 'admin/images/logos/logo-red.png' %}" alt="" height="35">
                                 </span>
                     <span class="logo-lg">
-                                    <img src="{% static 'core/images/logos/logo-red.png' %}" alt="" height="35">
+                                    <img src="{% static 'admin/images/logos/logo-red.png' %}" alt="" height="35">
                                 </span>
                 </a>
 
                 <a href="/" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{% static 'core/images/logos/logo-red.png' %}" alt="" height="35">
+                                    <img src="{% static 'admin/images/logos/logo-red.png' %}" alt="" height="35">
                                 </span>
                     <span class="logo-lg">
-                                    <img src="{% static 'core/images/logos/logo-red.png' %}" alt="" height="35">
+                                    <img src="{% static 'admin/images/logos/logo-red.png' %}" alt="" height="35">
                                 </span>
                 </a>
             </div>
@@ -38,7 +38,7 @@
             {# LANG #}
             <div class="dropdown d-none d-lg-inline-block ml-1">
                 <button type="button" class="btn header-item waves-effect">
-                    <img class="" src="{% static 'core/images/flags/us.jpg' %}" alt="Header Language" height="16">
+                    <img class="" src="{% static 'admin/images/flags/us.jpg' %}" alt="Header Language" height="16">
                 </button>
             </div>
 
@@ -100,7 +100,7 @@
                             {% if request.user.profile_image %}
                          src="{{ request.user.profile_image.url }}"
                             {% else %}
-                         src="{% static 'core/images/base/no-user.png' %}"
+                         src="{% static 'admin/images/base/no-user.png' %}"
                             {% endif %}
                          alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ml-1">{{ request.user.username }}</span>
