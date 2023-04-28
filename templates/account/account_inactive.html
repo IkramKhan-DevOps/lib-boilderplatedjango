@@ -4,8 +4,23 @@
 
 {% block head_title %}{% trans "Account Inactive" %}{% endblock %}
 
-{% block content %}
-<h1>{% trans "Account Inactive" %}</h1>
+{% block dont_include_details %}
 
-<p>{% trans "This account is inactive." %}</p>
+    <div class="account-pages my-5 pt-sm-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-6">
+                    <div class="card shadow">
+
+                        <h1>{% trans "Account Inactive" %}</h1>
+                        <p>{% trans "This account is inactive." %}</p>
+
+                    </div>
+                </div>
+            </div>
+
+            {% include 'include/global-short-footer.html' %}
+
+        </div>
+    </div>
 {% endblock %}

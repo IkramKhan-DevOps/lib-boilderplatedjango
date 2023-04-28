@@ -12,13 +12,14 @@
 
 {% block dont_include_details %}
 
-    <div class="container text-secondary mt-5">
-        <div class="row justify-content-center">
-            <div class="col-10 col-sm-7 m-2 mt-5">
+    <div class="account-pages my-5 pt-sm-5">
+        <div class="container">
 
-                <div class="card border border-danger mt-5 p-sm-5 p-2">
-                    <div class="card-body">
-                        <div class="card-header bg-transparent border-danger">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-6">
+
+                    <div class="card border border-danger mt-5 p-sm-5 p-2">
+                        <div class="card-body border-danger">
                             <h5 class="my-0 text-danger">
                                 <i class="mdi mdi-block-helper mr-3"></i> {% trans "SIGN OUT" %}
                             </h5>
@@ -29,23 +30,24 @@
                                 are you sure you want to sign out from application?
                             </p>
                             <form method="post" action="{% url 'account_logout' %}">
-                            {% csrf_token %}
-                            {% if redirect_field_value %}
-                                <input type="hidden" name="{{ redirect_field_name }}"
-                                       value="{{ redirect_field_value }}"/>
-                            {% endif %}
-                            <button class="btn btn-danger my-2" type="submit"><i class="fa fa-door-open"></i> PROCEED</button>
-                            <a class="btn btn-primary my-2" href="{% url 'accounts:cross-auth-view' %}"><i class="fa fa-user-check"></i> Dashboard</a>
-                        </form>
+                                {% csrf_token %}
+                                {% if redirect_field_value %}
+                                    <input type="hidden" name="{{ redirect_field_name }}"
+                                           value="{{ redirect_field_value }}"/>
+                                {% endif %}
+                                <button class="btn btn-danger my-2" type="submit"><i class="fa fa-door-open"></i>
+                                    PROCEED
+                                </button>
+                                <a class="btn btn-primary my-2" href="{% url 'accounts:cross-auth-view' %}"><i
+                                        class="fa fa-user-check"></i> Dashboard</a>
+                            </form>
                         </div>
-
-
-
                     </div>
+
+
                 </div>
-
-
             </div>
+            {% include 'include/global-short-footer.html' %}
         </div>
     </div>
 

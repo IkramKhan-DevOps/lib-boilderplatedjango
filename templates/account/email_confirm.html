@@ -14,13 +14,12 @@
 {% block base_top_nav %} {% endblock %}
 {% block dont_include_details %}
 
-   {% include 'messages.html' %}
+    {% include 'messages.html' %}
 
     <div class="container my-4">
-        <div class="row justify-content-center">
-            <div class="col-sm-8 col-12">
-                <hr class="border border-danger">
 
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-6">
                 <div class="card">
                     <div class="card-body">
                         <h1>{% trans "Confirm E-mail Address" %}</h1>
@@ -55,6 +54,9 @@
                 </div>
             </div>
         </div>
+
+        {% include 'include/global-short-footer.html' %}
+
     </div>
 
 {% endblock %}
