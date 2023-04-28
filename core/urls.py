@@ -14,8 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', admin('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import render
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
+from django.views.static import serve
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
@@ -23,7 +25,20 @@ from rest_framework import permissions
 from core.config import (
     APP_NAME, APP_DESC, APP_VERSION, APP_TERMS, APP_CONTACT, APP_LICENSE
 )
-from core.settings import ENVIRONMENT
+from core.settings import ENVIRONMENT, MEDIA_ROOT, STATIC_ROOT
+
+
+def handler404(request, *args, **kwargs):
+    return render(request, "404.html")
+
+
+def handler500(request, *args, **kwargs):
+    return render(request, "500.html")
+
+
+handler404 = handler404
+handler500 = handler500
+
 
 """ TO LEARN SWAGGER - https://drf-yasg.readthedocs.io/en/stable/readme.html """
 schema_view = get_schema_view(
@@ -61,11 +76,14 @@ urlpatterns = [
 # universal urls
 urlpatterns += [
     path('under-construction/', TemplateView.as_view(template_name='under-construction.html')),  # use: for page under-construction
-    path('404/', TemplateView.as_view(template_name='404.html')),  # use: for page 404
-    path('500/', TemplateView.as_view(template_name='500.html')),  # use: for page 500
 
     # REMOVE THIS WHEN HOME VIEW CREATED
     path('', TemplateView.as_view(template_name='dev/starter-page.html')),  # use: for home page/remove this
+]
+
+urlpatterns += [
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': STATIC_ROOT}),
 ]
 
 # your apps urls
