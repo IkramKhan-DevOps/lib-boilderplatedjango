@@ -13,10 +13,4 @@ python-decouple
 django-ckeditor
 django-crispy-forms
 
-djangorestframework
-djangorestframework-jwt
-dj-rest-auth
-django-rest-swagger
-drf_yasg
-
 django-browser-reload
