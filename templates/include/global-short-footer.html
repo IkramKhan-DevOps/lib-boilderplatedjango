@@ -3,9 +3,12 @@
         <div class="text-center">
             <p class="mb-0">
                 <b>
-                    <a href="#"><i class="bx bx-home"></i> Home</a> &nbsp;-&nbsp;
-                    <a href="#"><i class="bx bx-pen"></i> Terms and Conditions</a> &nbsp;-&nbsp;
-                    <a href="#"><i class="bx bx-shield"></i> Privacy Policy</a>
+                    <a href="/"><i class="bx bx-home"></i> Home</a> &nbsp;-&nbsp;
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'accounts:cross-auth' %}"><i class="bx bxs-dashboard"></i> Dashboard</a>
+                    {% else %}
+                        <a href="{% url 'accounts:cross-auth' %}"><i class="bx bx-lock-open"></i> Login</a>
+                    {% endif %}
                 </b>
             </p>
         </div>
