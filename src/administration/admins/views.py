@@ -27,9 +27,8 @@ class DashboardView(TemplateView):
     template_name = 'admins/dashboard.html'
 
     def get_context_data(self, **kwargs):
+        messages.success(self.request, 'Welcome to the administration panel!')
         context = super(DashboardView, self).get_context_data(**kwargs)
-        # context = calculate_statistics(context)
-        # initialization(init=False, mid=False, end=False)
         return context
 
 
