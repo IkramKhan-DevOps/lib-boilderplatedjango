@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.shortcuts import render
 from django.urls import path, include, re_path
+from django.views.generic import TemplateView
 from django.views.static import serve
 
 from core.settings import ENVIRONMENT, MEDIA_ROOT, STATIC_ROOT
@@ -43,6 +44,7 @@ urlpatterns += [
 
 # APPLICATIONS URLS ----------------------------------------------------------------------------------------------------
 urlpatterns += [
+    path('', TemplateView.as_view(template_name='starter.html'), name='starter'),
     path('admins/', include('src.administration.admins.urls', namespace='admins')),
 ]
 

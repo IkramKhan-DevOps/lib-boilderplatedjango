@@ -159,6 +159,10 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR / 'assets'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+FIXTURE_DIRS = [
+    'fixtures',
+]
+
 
 """ RESIZER IMAGE --------------------------------------------------------------------------------"""
 DJANGORESIZED_DEFAULT_SIZE = [1920, 1080]

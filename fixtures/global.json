@@ -1,0 +1,15 @@
+[
+  {
+    "model": "global.sitesettings",
+    "pk": 1,
+    "fields": {
+      "name": "Exarth",
+      "tagline": "Your technology partner",
+      "description": "No description added",
+      "logo": null,
+      "logo_dark": null,
+      "logo_light": null,
+      "favicon": null
+    }
+  }
+]
