@@ -17,6 +17,8 @@
     </div>
 
     <div class="account-pages my-5 pt-sm-5">
+
+        {# AUTH AREA #}
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 col-xl-5">
@@ -44,33 +46,7 @@
                                 </a>
                             </div>
                             <div class="p-2">
-                                {#                            <h1>{% trans "Sign In" %}</h1>#}
                                 {% get_providers as socialaccount_providers %}
-
-                                {% if socialaccount_providers %}
-                                    <p class="">{% blocktrans with site.name as site_name %}Please sign in with one
-                                        of your existing third party accounts. Or,
-                                        <a href="{{ signup_url }}"><b>Sign Up</b></a>
-                                        for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-
-                                    {#                            <div class="socialaccount_ballot">#}
-                                    {##}
-                                    {#                                <ul class="socialaccount_providers">#}
-                                    {#                                    {% admin "socialaccount/snippets/provider_list.html" with process="login" %}#}
-                                    {#                                </ul>#}
-                                    {##}
-                                    {#                                <div class="login-or">{% trans '' %}</div>#}
-                                    {#                                <hr>#}
-                                    {##}
-                                    {#                            </div>#}
-                                    {##}
-                                    {#                            {% admin "socialaccount/snippets/login_extra.html" %}#}
-
-                                {% else %}
-                                    <p>{% blocktrans %}If you have not created an account yet, then please
-                                        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-                                {% endif %}
-
                                 <form class="login" id="login_form" method="POST" action="{% url 'account_login' %}">
 
                                     {% csrf_token %}
@@ -129,6 +105,19 @@
                 </div>
             </div>
         </div>
+
+        {# SIGNUP LINK #}
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-6">
+                <div class="text-center">
+                    <p class="mb-0">
+                        Don't have an account?
+                        <b><a href="#">Signup</a></b>
+                    </p>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 {% endblock %}

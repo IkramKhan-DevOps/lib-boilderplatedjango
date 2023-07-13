@@ -13,12 +13,12 @@
     <meta name="developer" content="exarth.com">
     <meta name="org-name" content="exarth"/>
 
-    <link rel="icon" href="{% static 'core/images/logos/favico.ico' %}">
+    <link rel="icon" href="{% if sc_site.favicon %}{{ sc_site.favicon.url }}{% else %}https://placehold.co/50{% endif %}">
 
     <title>
 
         {% block title %}
-            App |
+            {{ sc_site.name }} |
 
             {# BASE HALF TITLE #}
             {% block subtitle %}
