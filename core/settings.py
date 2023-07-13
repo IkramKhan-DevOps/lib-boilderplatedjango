@@ -56,7 +56,6 @@ INSTALLED_APPS = [
 
     # YOUR APPS
     'src.global.apps.GlobalConfig',
-    'src.website.apps.WebsiteConfig',
     'src.accounts.apps.AccountsConfig',
     'src.administration.admins.apps.AdministrationAdminConfig'
 ]

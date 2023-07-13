@@ -94,78 +94,6 @@
 
         {% endblock %}
     </div>
-
-    {#    <div class="right-bar">#}
-    {#        <div data-simplebar="init" class="h-100">#}
-    {#            <div class="simplebar-wrapper" style="margin: 0px;">#}
-    {#                <div class="simplebar-height-auto-observer-wrapper">#}
-    {#                    <div class="simplebar-height-auto-observer"></div>#}
-    {#                </div>#}
-    {#                <div class="simplebar-mask">#}
-    {#                    <div class="simplebar-offset" style="right: 0px; bottom: 0px;">#}
-    {#                        <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden;">#}
-    {#                            <div class="simplebar-content" style="padding: 0px;">#}
-    {#                                <div class="rightbar-title px-3 py-4">#}
-    {#                                    <a href="javascript:void(0);" class="right-bar-toggle float-right">#}
-    {#                                        <i class="mdi mdi-close noti-icon"></i>#}
-    {#                                    </a>#}
-    {#                                    <h5 class="m-0">Settings</h5>#}
-    {#                                </div>#}
-    {##}
-    {#                                <!-- Settings -->#}
-    {#                                <hr class="mt-0">#}
-    {#                                <h6 class="text-center mb-0">Choose Layouts</h6>#}
-    {##}
-    {#                                <div class="p-4">#}
-    {#                                    <div class="mb-2">#}
-    {#                                        <img src="{% static 'exarth/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail"#}
-    {#                                             alt="">#}
-    {#                                    </div>#}
-    {#                                    <div class="custom-control custom-switch mb-3">#}
-    {#                                        <input type="checkbox" class="custom-control-input theme-choice"#}
-    {#                                               id="light-mode-switch" checked="">#}
-    {#                                        <label class="custom-control-label" for="light-mode-switch">Light Mode</label>#}
-    {#                                    </div>#}
-    {##}
-    {#                                    <div class="mb-2">#}
-    {#                                        <img src="{% static 'exarth/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail"#}
-    {#                                             alt="">#}
-    {#                                    </div>#}
-    {#                                    <div class="custom-control custom-switch mb-3">#}
-    {#                                        <input type="checkbox" class="custom-control-input theme-choice"#}
-    {#                                               id="dark-mode-switch" data-bsstyle="assets/css/bootstrap-dark.min.css' %}"#}
-    {#                                               data-appstyle="assets/css/app-dark.min.css' %}">#}
-    {#                                        <label class="custom-control-label" for="dark-mode-switch">Dark Mode</label>#}
-    {#                                    </div>#}
-    {##}
-    {#                                    <div class="mb-2">#}
-    {#                                        <img src="{% static 'exarth/images/layouts/layout-3.jpg" class="img-fluid img-thumbnail"#}
-    {#                                             alt="">#}
-    {#                                    </div>#}
-    {#                                    <div class="custom-control custom-switch mb-5">#}
-    {#                                        <input type="checkbox" class="custom-control-input theme-choice"#}
-    {#                                               id="rtl-mode-switch" data-appstyle="assets/css/app-rtl.min.css' %}">#}
-    {#                                        <label class="custom-control-label" for="rtl-mode-switch">RTL Mode</label>#}
-    {#                                    </div>#}
-    {##}
-    {##}
-    {#                                </div>#}
-    {##}
-    {#                            </div>#}
-    {#                        </div>#}
-    {#                    </div>#}
-    {#                </div>#}
-    {#                <div class="simplebar-placeholder" style="width: auto; height: 839px;"></div>#}
-    {#            </div>#}
-    {#            <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">#}
-    {#                <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div>#}
-    {#            </div>#}
-    {#            <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">#}
-    {#                <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div>#}
-    {#            </div>#}
-    {#        </div> <!-- end slimscroll-menu-->#}
-    {#    </div>#}
-
     <div class="rightbar-overlay"></div>
     {#     jQuery first, then Popper.js, then Bootstrap JS#}
     {#    <script src="{% static 'core/helper.js' %}"></script>#}
@@ -193,6 +121,8 @@
 {% endblock %}
 
 </body>
+
+{% include 'messages.html' %}
 </html>
 
 
