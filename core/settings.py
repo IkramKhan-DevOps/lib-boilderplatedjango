@@ -1,4 +1,3 @@
-
 import datetime
 from pathlib import Path
 import environ
@@ -14,7 +13,6 @@ environ.Env.read_env(BASE_DIR / '.env')
 DEBUG = True
 ROOT_URLCONF = 'core.urls'
 AUTH_USER_MODEL = 'accounts.User'
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/accounts/cross-auth/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -24,6 +22,9 @@ ENVIRONMENT = env('ENVIRONMENT')
 ALLOWED_HOSTS = ["*"]
 GOOGLE_CALLBACK_ADDRESS = env('GOOGLE_CALLBACK_URL')
 SITE_ID = int(env('SITE_ID'))
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 INSTALLED_APPS = [
     # DJANGO APPS
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
 
     # STARTER APPS
     'crispy_forms',
-    'ckeditor',
+    'crispy_bootstrap5',
     'django_filters',
 
     # WEB APPS
@@ -181,7 +182,6 @@ ACCOUNT_USERNAME_REQUIRED = False
 OLD_PASSWORD_FIELD_ENABLED = True
 LOGOUT_ON_PASSWORD_CHANGE = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-
 
 """ DEBUGGING TOOLS """
 

@@ -12,5 +12,6 @@ django-resized
 python-decouple
 django-ckeditor
 django-crispy-forms
+crispy-bootstrap5
 
 django-browser-reload
