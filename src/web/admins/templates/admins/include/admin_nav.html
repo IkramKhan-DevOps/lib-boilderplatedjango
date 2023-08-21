@@ -1,0 +1,138 @@
+{% load static %}
+{#{% load notifications_tags %}#}
+
+<header id="page-topbar">
+    <div class="navbar-header">
+        <div class="d-flex">
+            <!-- LOGO -->
+            <!-- LOGO -->
+            <div class="navbar-brand-box">
+                <a href="/static" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="{% static 'admin/images/logos/logo-red.png' %}" alt="" height="35">
+                                </span>
+                    <span class="logo-lg">
+                                    <img src="{% static 'admin/images/logos/logo-red.png' %}" alt="" height="35">
+                                </span>
+                </a>
+
+                <a href="/static" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="{% static 'admin/images/logos/logo-red.png' %}" alt="" height="35">
+                                </span>
+                    <span class="logo-lg">
+                                    <img src="{% static 'admin/images/logos/logo-red.png' %}" alt="" height="35">
+                                </span>
+                </a>
+            </div>
+
+            <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light"
+                    data-toggle="collapse" data-target="#topnav-menu-content">
+                <i class="fa fa-fw fa-bars"></i>
+            </button>
+
+        </div>
+
+        <div class="d-flex">
+
+            {# LANG #}
+            <div class="dropdown d-none d-lg-inline-block ml-1">
+                <button type="button" class="btn header-item waves-effect">
+                    <img class="" src="{% static 'admin/images/flags/us.jpg' %}" alt="Header Language" height="16">
+                </button>
+            </div>
+
+            {# FULL_SCREEN #}
+            <div class="dropdown d-none d-lg-inline-block ml-1">
+                <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                    <i class="bx bx-fullscreen"></i>
+                </button>
+            </div>
+
+            {# NOTIFICATIONS #}
+            <div class="dropdown d-inline-block">
+                <button type="button" class="btn header-item noti-icon waves-effect"
+                        id="page-header-notifications-dropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="bx bx-bell bx-tada"></i>
+                    <span class="badge badge-danger badge-pill">
+{#                        {% live_notify_badge %}#}
+                    </span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
+                     aria-labelledby="page-header-notifications-dropdown">
+                    <div class="p-3">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="m-0"> Notifications </h6>
+                            </div>
+                            <div class="col-auto">
+                                <a href="#" class="small"> View All</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-simplebar style="max-height: 420px;">
+                        <div id="notify_me_now">
+
+                        </div>
+                        <div class="p-2 border-top text-center">
+                            <button class="btn text-primary small" onclick="unread_all_notifications()">
+                                <i class="mdi mdi-arrow-right-circle mr-1"></i> Mark All as Read
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            {#            <div class="dropdown d-inline-block">#}
+            {#                <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">#}
+            {#                    <i class="bx bx-cog bx-spin"></i>#}
+            {#                </button>#}
+            {#            </div>#}
+
+
+            {# USER ONLINE #}
+            <div class="dropdown d-inline-block">
+                <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="rounded-circle header-profile-user"
+                            {% if request.user.profile_image %}
+                         src="{{ request.user.profile_image.url }}"
+                            {% else %}
+                         src="{% static 'admin/images/base/no-user.png' %}"
+                            {% endif %}
+                         alt="Header Avatar">
+                    <span class="d-none d-xl-inline-block ml-1">{{ request.user.username }}</span>
+                    <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <!-- item-->
+                    <a class="dropdown-item" href="{% url 'users:cross-auth' %}">
+                        <i class="bx bxs-dashboard font-size-16 align-middle mr-1"></i> Dashboard
+                    </a>
+                    <a class="dropdown-item" href="{% url 'users:user-change' %}">
+                        <i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile
+                    </a>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" href="{% url 'account_email' %}">
+                        <i class="bx bxl-telegram font-size-16 align-middle mr-1"></i> Email accounts
+                    </a>
+                    <a class="dropdown-item" href="{% url 'account_change_password' %}">
+                        <i class="bx bx-lock-open font-size-16 align-middle mr-1"></i>Password Change
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-primary" href="{% url 'users:logout' %}">
+                        <i class="bx bx-power-off font-size-16 align-middle mr-1"></i> Logout
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+{% if request.user.is_superuser %}
+    {% include 'admin/admin_header.html' %}
+{% endif %}

@@ -10,7 +10,7 @@
     factory(window.jQuery);
   }
 }(function($) {
-  // pull in some summernote core functions
+  // pull in some summernote root functions
   var ui = $.summernote.ui;
   var dom = $.summernote.dom;
 

@@ -422,7 +422,7 @@ API.txt for details.
 		version: '1.0'
 	});
 
-	// Time-axis support used to be in Flot core, which exposed the
+	// Time-axis support used to be in Flot root, which exposed the
 	// formatDate function on the plot object.  Various plugins depend
 	// on the function, so we need to re-expose it here.
 

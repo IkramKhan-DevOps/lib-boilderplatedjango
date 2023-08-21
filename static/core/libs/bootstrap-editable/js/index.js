@@ -818,7 +818,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
            type = options.type;
 
            //`date` is some kind of virtual type that is transformed to one of exact types
-           //depending on mode and core lib
+           //depending on mode and root lib
            if(type === 'date') {
                //inline
                if(options.mode === 'inline') {

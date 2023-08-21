@@ -343,7 +343,7 @@
     };
 
     /**
-     * core function, create tooltip content
+     * root function, create tooltip content
      * @param  {string} content - template with tooltip content
      * @param  {object} item - Flot item
      * @return {string} real tooltip content for current item

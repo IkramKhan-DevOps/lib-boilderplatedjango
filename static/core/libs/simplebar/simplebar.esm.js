@@ -7,16 +7,16 @@
  * Under MIT License
  */
 
-import 'core-js/modules/es.array.filter';
-import 'core-js/modules/es.array.for-each';
-import 'core-js/modules/es.array.reduce';
-import 'core-js/modules/es.function.name';
-import 'core-js/modules/es.object.assign';
-import 'core-js/modules/es.parse-int';
-import 'core-js/modules/es.regexp.exec';
-import 'core-js/modules/es.string.match';
-import 'core-js/modules/es.string.replace';
-import 'core-js/modules/web.dom-collections.for-each';
+import 'root-js/modules/es.array.filter';
+import 'root-js/modules/es.array.for-each';
+import 'root-js/modules/es.array.reduce';
+import 'root-js/modules/es.function.name';
+import 'root-js/modules/es.object.assign';
+import 'root-js/modules/es.parse-int';
+import 'root-js/modules/es.regexp.exec';
+import 'root-js/modules/es.string.match';
+import 'root-js/modules/es.string.replace';
+import 'root-js/modules/web.dom-collections.for-each';
 import throttle from 'lodash.throttle';
 import debounce from 'lodash.debounce';
 import memoize from 'lodash.memoize';
