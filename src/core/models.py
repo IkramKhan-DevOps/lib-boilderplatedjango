@@ -67,6 +67,11 @@ class Application(models.Model):
     latitude = models.DecimalField(max_digits=10, decimal_places=6, help_text='latitude', default=23.7)
     longitude = models.DecimalField(max_digits=10, decimal_places=6, help_text='longitude', default=90.3)
 
+    terms_url = models.URLField(
+        max_length=255, default='https://exarth.com/terms-of-use/', help_text='Terms and Conditions page link'
+    )
+
+    version = models.CharField(max_length=10, help_text='Current version', default='1.0.0')
     is_active = models.BooleanField(default=True)
     created_on = models.DateTimeField(auto_now_add=True)
 

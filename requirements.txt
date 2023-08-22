@@ -1,12 +1,12 @@
-six
+six~=1.16.0
 Faker
 pillow
 markdown
 python-dateutil
 
-django
+django~=4.2.3
 django-environ
-django-filter
+django-filter~=23.2
 django-allauth
 django-resized
 python-decouple
@@ -15,3 +15,7 @@ django-crispy-forms
 crispy-bootstrap5
 
 django-browser-reload
+
+pytz~=2023.3
+DateTime~=5.2
+djangorestframework~=3.14.0

@@ -15,9 +15,9 @@ SECRET_KEY = env('SECRET_KEY')
 ENVIRONMENT = env('ENVIRONMENT')
 SITE_ID = int(env('SITE_ID'))
 
-DOMAIN=env('DOMAIN')
-PROTOCOL=env('PROTOCOL')
-BASE_URL=f"{PROTOCOL}://{DOMAIN}"
+DOMAIN = env('DOMAIN')
+PROTOCOL = env('PROTOCOL')
+BASE_URL = f"{PROTOCOL}://{DOMAIN}"
 ALLOWED_HOSTS = str(env('ALLOWED_HOSTS')).split(',')
 LOGOUT_REDIRECT_URL = '/accounts/cross-auth/'
 LOGIN_REDIRECT_URL = '/accounts/cross-auth/'

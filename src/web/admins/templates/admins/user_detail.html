@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
+{% load core_tags %}
 
 {% block subtitle %}
     {{ user.username }}
@@ -26,7 +26,7 @@
                             <img class="rounded-circle" src="{{ user.profile_image.url }}" height="150px"
                                  alt="user-image">
                         {% else %}
-                            <img class="rounded-circle" src="{% static 'admin/images/base/no-user.png' %}"
+                            <img class="rounded-circle" src="{% static 'core/images/base/no-user.png' %}"
                                  height="150px" alt="no-user-image">
                         {% endif %}
                     </div>
@@ -111,46 +111,20 @@
                             <div class="col border-right">
                                 <p class="mb-0 text-center h3 text-success"><i class="mdi mdi-arrow-up"></i></p>
                                 <p class="mb-0 text-center small">Current TRX</p>
-                                <p class="mb-0 text-center h4">{{ statistic.current_amount|floatformat:2 }}</p>
+                                <p class="mb-0 text-center h4">00</p>
                             </div>
 
                             <div class="col">
                                 <p class="mb-0 text-center h3 text-danger"><i class="mdi mdi-arrow-down"></i>
                                 </p>
                                 <p class="mb-0 text-center small">Withdrawal TRX</p>
-                                <p class="mb-0 text-center h4">{{ statistic.withdrawn_amount|floatformat:2 }}</p>
+                                <p class="mb-0 text-center h4">00</p>
                             </div>
 
                             <div class="col">
                                 <p class="mb-0 text-center h3"><i class="fa fa-coins text-warning"></i></p>
                                 <p class="mb-0 text-center small">Generated TRX</p>
-                                <p class="mb-0 text-center h4">{{ statistic.generated_amount|floatformat:2 }}</p>
-                            </div>
-
-                            <div class="col">
-                                <p class="mb-0 text-center h3"><i class="mdi mdi-share text-primary"></i></p>
-                                <p class="mb-0 text-center small">Referral TRX</p>
-                                <p class="mb-0 text-center h4">{{ statistic.referrals_amount }}</p>
-                            </div>
-
-                            <div class="col">
-                                <p class="mb-0 text-center h3"><i class="mdi mdi-format-list-checks"></i></p>
-                                <p class="mb-0 text-center small">Referral Total</p>
-                                <p class="mb-0 text-center h4">{{ statistic.referrals_total }}</p>
-                            </div>
-
-                            <div class="col">
-                                <p class="mb-0 text-center h3"><i class="mdi mdi-format-list-bulleted-type"></i>
-                                </p>
-                                <p class="mb-0 text-center small">Subscription Total</p>
-                                <p class="mb-0 text-center h4">{{ statistic.subscription_total }}</p>
-                            </div>
-
-                            <div class="col">
-                                <p class="mb-0 text-center h3"><i class="mdi mdi-format-list-numbered"></i>
-                                </p>
-                                <p class="mb-0 text-center small">Withdrawals Total</p>
-                                <p class="mb-0 text-center h4">{{ statistic.withdrawals_total }}</p>
+                                <p class="mb-0 text-center h4">00</p>
                             </div>
 
                         </div>
