@@ -20,9 +20,14 @@ TIME_ZONE=Asia/Karachi
 GOOGLE_CALLBACK_URL=http://127.0.0.1:8000/accounts/google/login/callback/
 ALLOWED_HOST=127.0.0.1
 SITE_ID=1
+DOMAIN=127.0.0.1:8000
+USE_SSL=True
 
 # MIGRATIONS
 make sure to follow this migrations order.
 1. core
 2. users
 3. ...
+
+# MISSING
+accounts templates are missing

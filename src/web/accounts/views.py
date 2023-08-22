@@ -28,7 +28,7 @@ class UserUpdateView(View):
     def get(self, request):
         form = UserProfileForm(instance=request.user)
         context = {'form': form}
-        return render(request, template_name='users/user_update_form.html', context=context)
+        return render(request, template_name='accounts/user_update_form.html', context=context)
 
     def post(self, request):
         form = UserProfileForm(request.POST, request.FILES, instance=request.user)
@@ -36,4 +36,4 @@ class UserUpdateView(View):
             messages.success(request, "Your profile updated successfully")
             form.save(commit=True)
         context = {'form': form}
-        return render(request, template_name='users/user_update_form.html', context=context)
+        return render(request, template_name='accounts/user_update_form.html', context=context)

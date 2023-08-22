@@ -7,21 +7,21 @@
             <!-- LOGO -->
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="/static" class="logo logo-dark">
+                <a href="#" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="{% static 'admin/images/logos/logo-red.png' %}" alt="" height="35">
+                                    <img src="{% static 'core/images/logos/logo-red.png' %}" alt="" height="35">
                                 </span>
                     <span class="logo-lg">
-                                    <img src="{% static 'admin/images/logos/logo-red.png' %}" alt="" height="35">
+                                    <img src="{% static 'core/images/logos/logo-red.png' %}" alt="" height="35">
                                 </span>
                 </a>
 
-                <a href="/static" class="logo logo-light">
+                <a href="#" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{% static 'admin/images/logos/logo-red.png' %}" alt="" height="35">
+                                    <img src="{% static 'core/images/logos/logo-red.png' %}" alt="" height="35">
                                 </span>
                     <span class="logo-lg">
-                                    <img src="{% static 'admin/images/logos/logo-red.png' %}" alt="" height="35">
+                                    <img src="{% static 'core/images/logos/logo-red.png' %}" alt="" height="35">
                                 </span>
                 </a>
             </div>
@@ -34,13 +34,6 @@
         </div>
 
         <div class="d-flex">
-
-            {# LANG #}
-            <div class="dropdown d-none d-lg-inline-block ml-1">
-                <button type="button" class="btn header-item waves-effect">
-                    <img class="" src="{% static 'admin/images/flags/us.jpg' %}" alt="Header Language" height="16">
-                </button>
-            </div>
 
             {# FULL_SCREEN #}
             <div class="dropdown d-none d-lg-inline-block ml-1">
@@ -100,7 +93,7 @@
                             {% if request.user.profile_image %}
                          src="{{ request.user.profile_image.url }}"
                             {% else %}
-                         src="{% static 'admin/images/base/no-user.png' %}"
+                         src="{% static 'core/images/base/no-user.png' %}"
                             {% endif %}
                          alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ml-1">{{ request.user.username }}</span>
@@ -108,10 +101,10 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- item-->
-                    <a class="dropdown-item" href="{% url 'users:cross-auth' %}">
+                    <a class="dropdown-item" href="{% url 'accounts:cross-auth' %}">
                         <i class="bx bxs-dashboard font-size-16 align-middle mr-1"></i> Dashboard
                     </a>
-                    <a class="dropdown-item" href="{% url 'users:user-change' %}">
+                    <a class="dropdown-item" href="{% url 'accounts:user-change' %}">
                         <i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile
                     </a>
                     <div class="dropdown-divider"></div>
@@ -123,7 +116,7 @@
                         <i class="bx bx-lock-open font-size-16 align-middle mr-1"></i>Password Change
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-primary" href="{% url 'users:logout' %}">
+                    <a class="dropdown-item text-primary" href="{% url 'accounts:logout' %}">
                         <i class="bx bx-power-off font-size-16 align-middle mr-1"></i> Logout
                     </a>
                 </div>
@@ -134,5 +127,5 @@
 </header>
 
 {% if request.user.is_superuser %}
-    {% include 'admin/admin_header.html' %}
+    {% include 'admins/include/admin_header.html' %}
 {% endif %}

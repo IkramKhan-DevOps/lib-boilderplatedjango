@@ -11,17 +11,21 @@ env = environ.Env(
 environ.Env.read_env(BASE_DIR / '.env')
 
 DEBUG = True
-ROOT_URLCONF = 'root.urls'
-AUTH_USER_MODEL = 'users.User'
-LOGOUT_REDIRECT_URL = '/accounts/cross-auth/'
-LOGIN_REDIRECT_URL = '/accounts/cross-auth/'
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 SECRET_KEY = env('SECRET_KEY')
 ENVIRONMENT = env('ENVIRONMENT')
-ALLOWED_HOSTS = ["*"]
-GOOGLE_CALLBACK_ADDRESS = env('GOOGLE_CALLBACK_URL')
 SITE_ID = int(env('SITE_ID'))
+
+DOMAIN=env('DOMAIN')
+PROTOCOL=env('PROTOCOL')
+BASE_URL=f"{PROTOCOL}://{DOMAIN}"
+ALLOWED_HOSTS = str(env('ALLOWED_HOSTS')).split(',')
+LOGOUT_REDIRECT_URL = '/accounts/cross-auth/'
+LOGIN_REDIRECT_URL = '/accounts/cross-auth/'
+GOOGLE_CALLBACK_ADDRESS = f"{BASE_URL}/accounts/google/login/callback/"
+
+ROOT_URLCONF = 'root.urls'
+AUTH_USER_MODEL = 'users.User'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -98,6 +102,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'src.core.context_processors.application'
             ],
         },
     },
