@@ -7,13 +7,13 @@ from root.settings import ENVIRONMENT, MEDIA_ROOT, STATIC_ROOT
 from src.core.handlers import (
     handler404, handler500
 )
-
 urlpatterns = []
 
-""" HANDLERS ------------------------------------------------------------------------------------------------------- """
 
+""" HANDLERS ------------------------------------------------------------------------------------------------------- """
 handler404 = handler404
 handler500 = handler500
+
 
 """ INTERNAL REQUIRED APPS ----------------------------------------------------------------------------------------- """
 urlpatterns += [
