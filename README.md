@@ -68,11 +68,12 @@ Please check the detailed down requirements here wrt iterations
 
 ## How to run locally
 
-```
-install python > 3.8
-
-cd project_directory
+```shell
+git clone https://github.com/IkramKhan-DevOps/lib-boilderplatedjango.git
+cd lib-boilderplatedjango.git
 pip install -r requirements.txt
+python manage.py makemigrations core users
+python manage.py migrate
 py manage.py runserver
 ```
 
