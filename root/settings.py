@@ -19,9 +19,11 @@ DOMAIN = env('DOMAIN')
 PROTOCOL = env('PROTOCOL')
 BASE_URL = f"{PROTOCOL}://{DOMAIN}"
 ALLOWED_HOSTS = str(env('ALLOWED_HOSTS')).split(',')
+CSRF_TRUSTED_ORIGINS = [f'{PROTOCOL}://{host}' for host in ALLOWED_HOSTS]
 LOGOUT_REDIRECT_URL = '/accounts/cross-auth/'
 LOGIN_REDIRECT_URL = '/accounts/cross-auth/'
 GOOGLE_CALLBACK_ADDRESS = f"{BASE_URL}/accounts/google/login/callback/"
+
 
 ROOT_URLCONF = 'root.urls'
 AUTH_USER_MODEL = 'users.User'
