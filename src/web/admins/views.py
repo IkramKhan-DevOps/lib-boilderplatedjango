@@ -85,7 +85,7 @@ class UserPasswordResetView(View):
     def get(self, request, pk):
         user = get_object_or_404(User, pk=pk)
         form = AdminPasswordChangeForm(user=user)
-        return render(request, 'admins/admin_password_reset.html', {'form': form})
+        return render(request, 'admins/admin_password_reset.html', {'form': form, 'object': user})
 
     def post(self, request, pk):
         user = get_object_or_404(User, pk=pk)
@@ -93,4 +93,4 @@ class UserPasswordResetView(View):
         if form.is_valid():
             form.save(commit=True)
             messages.success(request, f"{user.get_full_name()}'s password changed successfully.")
-        return render(request, 'admins/admin_password_reset.html', {'form': form})
+        return render(request, 'admins/admin_password_reset.html', {'form': form, 'object': user})
