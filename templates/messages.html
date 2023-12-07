@@ -1,44 +1,41 @@
-<div>
-    {% if messages %}
-    <div class="container">
-        {% for message in messages %}
-            {% if message.tags == 'info' %}
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    <strong>{{ message.tags }}! </strong> {{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% elif message.tags == 'debug' %}
-                <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                    <strong>{{ message.tags }}! </strong> {{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% elif message.tags == 'success' %}
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{ message.tags }}! </strong> {{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% elif message.tags == 'error' %}
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>{{ message.tags }}! </strong> {{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% else %}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>{{ message.tags }}! </strong> {{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-{% endif %}
-</div>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script>
+    $(document).ready(function () {
+        {% if messages %}
+            {% for message in messages %}
+                Toastify({
+                    text: "{{ message }}",
+                    className: "{{ message.tags }}",
+                    gravity: "top", // `top` or `bottom`
+                    position: "center", // `left`, `center` or `right`
+                    stopOnFocus: true,
+                    duration: 10000,
+                    close: true,
+                    style: {
+                        background: get_message_color('{{ message.tags }}'),
+                    }
+                }).showToast();
+            {% endfor %}
+        {% endif %}
+
+        function toast_message() {
+
+        }
+
+        function get_message_color(value) {
+            if (value === 'info') {
+                return "#337ab7";
+            } else if (value === 'warning') {
+                return "#8a6d3b";
+            } else if (value === 'error') {
+                return "#a94442";
+            } else if (value === 'success') {
+                return "#3c763d";
+            } else {
+                return "#31708f";
+            }
+        }
+    });
+</script>
