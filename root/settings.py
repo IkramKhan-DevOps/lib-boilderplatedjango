@@ -24,7 +24,6 @@ LOGOUT_REDIRECT_URL = '/accounts/cross-auth/'
 LOGIN_REDIRECT_URL = '/accounts/cross-auth/'
 GOOGLE_CALLBACK_ADDRESS = f"{BASE_URL}/accounts/google/login/callback/"
 
-
 ROOT_URLCONF = 'root.urls'
 AUTH_USER_MODEL = 'users.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -85,6 +84,7 @@ MIDDLEWARE = [
     'django_browser_reload.middleware.BrowserReloadMiddleware',
 
     # YOUR MIDDLEWARES
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 AUTHENTICATION_BACKENDS = [

@@ -50,16 +50,16 @@ application detailed down description here
 
 ## install
 
-```shell
+```bash
 git clone git@github.com:IkramKhan-DevOps/cleaning-services.git
 cd cleaning-services
 ```
 
 ## initialize and run
 
-```shell
+```bash
 pip install -r requirements.txt
-python manage.py makemigrations core accounts
+python manage.py makemigrations core users
 python manage.py migrate
 py manage.py runserver
 ```
