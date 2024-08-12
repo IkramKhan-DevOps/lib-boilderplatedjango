@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
 
     # REST APPS
     'rest_framework',
@@ -206,3 +207,6 @@ if ENVIRONMENT != 'server':
     MIDDLEWARE += [
         'django_browser_reload.middleware.BrowserReloadMiddleware'
     ]
+
+
+SITE_ID=1

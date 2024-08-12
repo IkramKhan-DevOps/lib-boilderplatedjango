@@ -21,7 +21,6 @@ crispy-bootstrap5
 django-browser-reload
 drf-yasg
 django-phonenumber-field[phonenumbers]
-
 PyJWT
 cryptography
 paramiko
