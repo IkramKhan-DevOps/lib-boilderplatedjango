@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import AdminPasswordChangeForm
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -107,5 +107,22 @@ class SocialsView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        #FOR DYNAMIC BUTTONS
+        provider_info = {
+            'twitter': {'btn_class': 'btn-primary', 'icon': 'bx bxl-twitter'},
+            'github': {'btn_class': 'btn-dark', 'icon': 'bx bxl-github'},
+            'google': {'btn_class': "class = 'card-title  btn btn-danger'", 'icon': 'bx bxl-google'},
+            'facebook': {'btn_class': 'btn-primary', 'icon': 'bx bxl-facebook'},
+            # Add more providers if needed
+        }
         context['social_accounts'] = SocialAccount.objects.filter(user=self.request.user)
+        context['provider_info'] = provider_info
         return context
+
+
+@login_required
+def remove_social_account(request, account_id):
+    account = get_object_or_404(SocialAccount, id=account_id, user=request.user)
+    account.delete()
+    return redirect('admins:social_accounts')  # Update with your actual view name or URL name

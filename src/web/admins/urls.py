@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     DashboardView,
-    UserListView, UserPasswordResetView, UserDetailView, UserUpdateView, SocialsView
+    UserListView, UserPasswordResetView, UserDetailView, UserUpdateView, SocialsView, remove_social_account
 )
 
 
@@ -16,5 +16,6 @@ urlpatterns = [
     path('user/<int:pk>/password/reset/', UserPasswordResetView.as_view(), name='user-password-reset-view'),
 
     path('socials/', SocialsView.as_view(), name='social-accounts'),
+    path('remove-social-account/<int:account_id>/', remove_social_account, name='remove_social_account'),
 
 ]

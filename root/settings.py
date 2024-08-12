@@ -87,13 +87,13 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
-AUTHENTICATION_BACKENDS = [
+AUTHENTICATION_BACKENDS = (
     # DJANGO BACKENDS
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 
     # YOUR BACKENDS
-]
+)
 
 TEMPLATES = [
     {
@@ -206,3 +206,15 @@ if ENVIRONMENT != 'server':
     MIDDLEWARE += [
         'django_browser_reload.middleware.BrowserReloadMiddleware'
     ]
+
+"""GOOGLE - ALL AUTH SETUP --------------------------------------------------------------------------------"""
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'CLIENT_ID': '1021579594890-6m3kiukcsku6j5lpcv0293sjc3qq4830.apps.googleusercontent.com',
+        'SECRET': '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',
+        'SCOPE': ['profile', 'email', 'openid'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+    }
+}
+
+
