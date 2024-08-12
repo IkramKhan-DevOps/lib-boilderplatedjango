@@ -94,3 +94,18 @@ class UserPasswordResetView(View):
             form.save(commit=True)
             messages.success(request, f"{user.get_full_name()}'s password changed successfully.")
         return render(request, 'admins/admin_password_reset.html', {'form': form, 'object': user})
+
+
+
+""" SOCIALS """
+
+from allauth.socialaccount.models import SocialAccount
+from django.views.generic import TemplateView
+
+class SocialsView(TemplateView):
+    template_name = 'admins/social-accounts.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['social_accounts'] = SocialAccount.objects.filter(user=self.request.user)
+        return context
