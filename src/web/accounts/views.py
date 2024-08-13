@@ -17,9 +17,18 @@ class LogoutView(View):
 
 @method_decorator(login_required, name='dispatch')
 class CrossAuthView(View):
-
     def get(self, request):
-        return redirect('admins:dashboard')
+
+        if not request.user.is_authenticated:
+            return redirect('account_login')
+
+        if request.user.is_superuser:
+            return redirect('/admin/')
+
+        if request.user.is_staff:
+            return redirect('admins:dashboard')
+
+        return redirect('/')
 
 
 @method_decorator(login_required, name='dispatch')

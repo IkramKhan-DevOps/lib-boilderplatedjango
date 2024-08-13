@@ -12,12 +12,11 @@ from django.views.generic import (
 
 # from faker_data import initialization
 from src.services.users.models import User
+from src.web.accounts.decorators import staff_required_decorator
 from src.web.admins.filters import UserFilter
 
-admin_decorators = [login_required, user_passes_test(lambda u: u.is_superuser)]
 
-
-@method_decorator(admin_decorators, name='dispatch')
+@method_decorator(staff_required_decorator, name='dispatch')
 class DashboardView(TemplateView):
     """
     Registrations: Today, Month, Year (PAID/UNPAID)
@@ -36,7 +35,7 @@ class DashboardView(TemplateView):
 """ USERS """
 
 
-@method_decorator(admin_decorators, name='dispatch')
+@method_decorator(staff_required_decorator, name='dispatch')
 class UserListView(ListView):
     model = User
     template_name = 'admins/user_list.html'
@@ -55,7 +54,7 @@ class UserListView(ListView):
         return context
 
 
-@method_decorator(admin_decorators, name='dispatch')
+@method_decorator(staff_required_decorator, name='dispatch')
 class UserDetailView(DetailView):
     model = User
     template_name = 'admins/user_detail.html'
@@ -66,7 +65,7 @@ class UserDetailView(DetailView):
         return context
 
 
-@method_decorator(admin_decorators, name='dispatch')
+@method_decorator(staff_required_decorator, name='dispatch')
 class UserUpdateView(UpdateView):
     model = User
     fields = [
@@ -79,7 +78,7 @@ class UserUpdateView(UpdateView):
         return reverse('admins:user-detail', kwargs={'pk': self.object.pk})
 
 
-@method_decorator(admin_decorators, name='dispatch')
+@method_decorator(staff_required_decorator, name='dispatch')
 class UserPasswordResetView(View):
 
     def get(self, request, pk):
@@ -108,16 +107,7 @@ class SocialsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        #FOR DYNAMIC BUTTONS
-        provider_info = {
-            'twitter': {'btn_class': 'btn-primary', 'icon': 'bx bxl-twitter'},
-            'github': {'btn_class': 'btn-dark', 'icon': 'bx bxl-github'},
-            'google': {'btn_class': "class = 'card-title  btn btn-danger'", 'icon': 'bx bxl-google'},
-            'facebook': {'btn_class': 'btn-primary', 'icon': 'bx bxl-facebook'},
-            # Add more providers if needed
-        }
         context['social_accounts'] = SocialAccount.objects.filter(user=self.request.user)
-        context['provider_info'] = provider_info
         return context
 
 
@@ -125,4 +115,4 @@ class SocialsView(TemplateView):
 def remove_social_account(request, account_id):
     account = get_object_or_404(SocialAccount, id=account_id, user=request.user)
     account.delete()
-    return redirect('admins:social-accounts')  # Update with your actual view name or URL name
+    return redirect('admins:social_accounts')  # Update with your actual view name or URL name

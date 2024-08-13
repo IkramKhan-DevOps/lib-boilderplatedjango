@@ -61,6 +61,9 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'drf_yasg',
 
+
+
+
     # YOUR APPS
     'src.core.apps.CoreConfig',
     'src.services.users.apps.UsersConfig',
@@ -94,7 +97,6 @@ AUTHENTICATION_BACKENDS = (
     # DJANGO BACKENDS
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-
     # YOUR BACKENDS
 )
 

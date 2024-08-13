@@ -29,6 +29,7 @@ urlpatterns += [
 ]
 
 
+
 """ STATIC AND MEDIA FILES ----------------------------------------------------------------------------------------- """
 urlpatterns += [
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
