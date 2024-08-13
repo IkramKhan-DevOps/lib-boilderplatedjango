@@ -19,6 +19,7 @@ handler500 = handler500
 urlpatterns += [
     path('', include('src.web.urls')),
     path('api/', include('src.api.urls')),
+    path('whisper/', include('src.apps.whisper.urls')),
 ]
 
 

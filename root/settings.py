@@ -70,8 +70,29 @@ INSTALLED_APPS = [
     'src.web.website',
     'src.web.accounts',
     'src.web.admins',
+    'src.apps.whisper.apps.WhisperConfig',
+
+    #mailchimp
+    'mailchimp_transactional',
+    
+    
+    
+    'notifications',
 
 ]
+# MAILCHIMP SETTINGS
+MAILCHIMP_API_KEY = env('MAILCHIMP_API_KEY')
+MAILCHIMP_FROM_EMAIL = env('MAILCHIMP_FROM_EMAIL')
+EMAIL_HOST = "smtp.mandrillapp.com"
+
+# GOOGLE SETTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_PORT = "587"
+EMAIL_HOST = "smtp.gmail.com"
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 MIDDLEWARE = [
     # DJANGO MIDDLEWARES
@@ -210,3 +231,4 @@ if ENVIRONMENT != 'server':
 
 
 SITE_ID=1
+
