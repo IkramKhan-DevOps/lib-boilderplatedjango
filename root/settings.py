@@ -243,4 +243,6 @@ EMAIL_HOST_PASSWORD = 'jyrq jbmd grlu vvzs'
 # Default from email address
 DEFAULT_FROM_EMAIL = 'exarth@info.com'  # Replace with the email address to appear in the 'from' field
 
+"""  ACCOUNT ADAPTER Modify Login/Signup Redirect UR----------------------------------------------------"""
+ACCOUNT_ADAPTER = "src.web.accounts.adapters.MyAccountAdapter"
 
