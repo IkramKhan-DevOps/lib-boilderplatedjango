@@ -8,20 +8,15 @@ from django.http import HttpResponseRedirect
 class MyAccountAdapter(DefaultAccountAdapter):
 
     def get_signup_redirect_url(self, request):
-        print('signup redirect url -- FOR DEBUGGING')
         return resolve_url('account_set_password')
 
     def get_login_redirect_url(self, request):
         # Check if the user has a usable password
         user = request.user
         if user.is_authenticated and user.has_usable_password():
-            print("user has password is usable -- FOR DEBUGGING")
-
             return resolve_url('/')
 
         else:
-            print("User has no password -- FOR DEBUGGING")
-
             return resolve_url('account_set_password')
 
 
