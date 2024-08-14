@@ -1,0 +1,22 @@
+{% extends 'account/auth_base.html' %}
+
+{% load i18n %}
+{% load account %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block subtitle %}{% trans "Social Network Login Failure" %}{% endblock %}
+
+{% block content %}
+    <div class="user-form-card text-center">
+        <div class="user-form-title">
+            <h2>{% trans "Social Network Login Failure" %}</h2>
+        </div>
+
+        <div class="user-form">
+            {% trans "An error occurred while attempting to login via your social network account." %}
+        </div>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,32 @@
+{% extends 'account/auth_base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load account socialaccount %}
+{% load socialaccount %}
+
+{% block subtitle %}Register your Business{% endblock %}
+
+{% block content %}
+
+    <div class="user-form-card">
+
+        <div class="user-form-title"><h2>Lets us know you!</h2>
+            <p>Describe your business below</p></div>
+
+        <div class="user-form-group text-left">
+            <form method="post" class="user-form" enctype="multipart/form-data">
+                {% crispy form %}
+            </form>
+        </div>
+
+        <div class="mt-4 text-center">
+            <p class="mb-0"><b>Note!</b> not sure where to go <a href="{% url 'website:contact' %}">contact us</a> or <a
+                    href="{% url 'accounts:logout' %}">logout</a></p>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+

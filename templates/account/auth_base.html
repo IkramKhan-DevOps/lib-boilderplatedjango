@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block base_css %}
+    <link href="{% static 'website/css/user-auth.css' %}" rel="stylesheet">
+{% endblock base_css %}
+
+{% block title %}
+    {% block subtitle %}
+
+    {% endblock %}
+{% endblock %}
+
+{% block only-body %}
+
+
+    <section class="user-form-part">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-10 col-md-12 col-lg-12 col-xl-10">
+
+                    <div class="user-form-logo d-flex justify-content-center">
+                        <a href="{% url 'admins:dashboard' %}">
+                            <img alt="logo" src="{% static 'core/images/logos/logo-red.png' %}"
+                                 style="width: 30px; height: auto"
+                                 class="img-fluid m-5">
+                        </a>
+                    </div>
+
+                    {% block content %}
+
+                    {% endblock %}
+
+                    {% block footer %}
+                        {% include 'account/include/auth_nav_footer.html' %}
+                    {% endblock %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+
