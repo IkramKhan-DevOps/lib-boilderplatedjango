@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.mfa'
 
     # REST APPS
     'rest_framework',
@@ -73,8 +74,7 @@ INSTALLED_APPS = [
     'src.web.accounts',
     'src.web.admins',
 
-    # MFA
-    'allauth.mfa'
+
 
 ]
 
