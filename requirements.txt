@@ -25,3 +25,4 @@ django-phonenumber-field[phonenumbers]
 PyJWT
 cryptography
 paramiko
+fido2
