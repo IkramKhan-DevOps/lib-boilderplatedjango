@@ -22,11 +22,11 @@ class CrossAuthView(View):
         if not request.user.is_authenticated:
             return redirect('account_login')
 
-        if request.user.is_superuser:
-            return redirect('/admin/')
-
         if request.user.is_staff:
             return redirect('admins:dashboard')
+
+        if request.user.is_superuser:
+            return redirect('/admin/')
 
         return redirect('/')
 

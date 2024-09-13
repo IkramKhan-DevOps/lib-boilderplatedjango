@@ -20,21 +20,17 @@
                     <div class="row">
                         {% for account in social_accounts %}
                         <div class="col-md-12">
-
-                            <div class="card  border border-5 border-dark rounded shadow-sm mb-3"
+                            <div class="card   rounded shadow-sm mb-3"
                                  style="border-radius: 1rem; border-style: solid;">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <h5 class="card-title btn btn-success mb-0">{{ account.provider }} Connected</h5>
                                     <a href="{% url 'admins:remove_social_account' account.id %}"
                                        class="btn btn-outline-danger"
-                                       onclick="return confirm('Are you sure you want to remove this account?');">Remove</a>
+                                       onclick="return confirm('Are you sure you want to remove this account?');">Remove
+                                    </a>
                                 </div>
                                 <pre>{{ account.extra_data|json_script:"extra_data" }}</pre>
-                                <div class="card-body">
-                                    <p class="card-text">Email: {{ account.extra_data.email }}</p>
-                                </div>
                             </div>
-
                         </div>
                         {% endfor %}
                     </div>
@@ -65,7 +61,7 @@
         </div>
     </div>
         <div class="account-settings p-3 m-4">
-            <h2>Account Security</h2>
+            <h2>Account Security - 2FA</h2>
                 <p>Enhance the security of your account by setting up Two-Factor Authentication.</p>
             <a href="{% url 'mfa_index' %}" class="btn btn-danger">Set Up Two-Factor Authentication</a>
         </div>
