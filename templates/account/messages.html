@@ -1,0 +1,27 @@
+    {% if messages %}
+    <div class="container pt-5 mt-5 pb-0 mb-0">
+        {% for message in messages %}
+            {% if message.tags == 'info' %}
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>{{ message.tags }}! </strong> {{ message }}
+                </div>
+            {% elif message.tags == 'debug' %}
+                <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                    <strong>{{ message.tags }}! </strong> {{ message }}
+                </div>
+            {% elif message.tags == 'success' %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ message.tags }}! </strong> {{ message }}
+                </div>
+            {% elif message.tags == 'error' %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ message.tags }}! </strong> {{ message }}
+                </div>
+            {% else %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{ message.tags }}! </strong> {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}

@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import AdminPasswordChangeForm
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -12,12 +12,11 @@ from django.views.generic import (
 
 # from faker_data import initialization
 from src.services.users.models import User
+from src.web.accounts.decorators import staff_required_decorator
 from src.web.admins.filters import UserFilter
 
-admin_decorators = [login_required, user_passes_test(lambda u: u.is_superuser)]
 
-
-@method_decorator(admin_decorators, name='dispatch')
+@method_decorator(staff_required_decorator, name='dispatch')
 class DashboardView(TemplateView):
     """
     Registrations: Today, Month, Year (PAID/UNPAID)
@@ -36,7 +35,7 @@ class DashboardView(TemplateView):
 """ USERS """
 
 
-@method_decorator(admin_decorators, name='dispatch')
+@method_decorator(staff_required_decorator, name='dispatch')
 class UserListView(ListView):
     model = User
     template_name = 'admins/user_list.html'
@@ -55,7 +54,7 @@ class UserListView(ListView):
         return context
 
 
-@method_decorator(admin_decorators, name='dispatch')
+@method_decorator(staff_required_decorator, name='dispatch')
 class UserDetailView(DetailView):
     model = User
     template_name = 'admins/user_detail.html'
@@ -66,7 +65,7 @@ class UserDetailView(DetailView):
         return context
 
 
-@method_decorator(admin_decorators, name='dispatch')
+@method_decorator(staff_required_decorator, name='dispatch')
 class UserUpdateView(UpdateView):
     model = User
     fields = [
@@ -79,7 +78,7 @@ class UserUpdateView(UpdateView):
         return reverse('admins:user-detail', kwargs={'pk': self.object.pk})
 
 
-@method_decorator(admin_decorators, name='dispatch')
+@method_decorator(staff_required_decorator, name='dispatch')
 class UserPasswordResetView(View):
 
     def get(self, request, pk):
@@ -94,3 +93,26 @@ class UserPasswordResetView(View):
             form.save(commit=True)
             messages.success(request, f"{user.get_full_name()}'s password changed successfully.")
         return render(request, 'admins/admin_password_reset.html', {'form': form, 'object': user})
+
+
+
+""" SOCIALS """
+
+from allauth.socialaccount.models import SocialAccount
+from django.views.generic import TemplateView
+
+class SocialsView(TemplateView):
+    template_name = 'admins/social-accounts.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['social_accounts'] = SocialAccount.objects.filter(user=self.request.user)
+        return context
+
+
+@login_required
+def remove_social_account(request, account_id):
+    account = get_object_or_404(SocialAccount, id=account_id, user=request.user)
+    account.delete()
+    return redirect('admins:social-accounts')  # Update with your actual view name or URL name

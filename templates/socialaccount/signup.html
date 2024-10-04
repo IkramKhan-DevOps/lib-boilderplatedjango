@@ -1,0 +1,44 @@
+{% extends 'account/auth_base.html' %}
+{% load i18n %}
+
+{% block subtitle %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+    <div class="user-form-card text-center">
+        <div class="user-form-title">
+            <h2>{% trans "Signup" %}</h2>
+        </div>
+
+        <div class="user-form">
+            <p>{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are
+                about to use your <b>{{ provider_name }}</b> account to login to
+                <b>{{ site_name }}</b>. As a final step, please complete the following
+                form:{% endblocktrans %}</p>
+
+            <form class="signup" id="signup_form" method="post"
+                  action="{% url 'socialaccount_signup' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}"
+                           value="{{ redirect_field_value }}"/>
+                {% endif %}
+                <button type="submit" class="btn btn-primary waves-effect waves-light"
+                        style="width: 100%;border-radius: 15px;">{% trans "Sign Up" %} &raquo;
+                </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js_code %}
+    <script>
+        $(document).ready(function () {
+            $('input[type=email], input[type=password]').addClass("form-control form-control border mb-2");
+            $('input[type=email], input[type=password]').css("border-radius", '15px');
+            $('.errorlist').addClass("text-danger");
+
+        });
+    </script>
+{% endblock %}

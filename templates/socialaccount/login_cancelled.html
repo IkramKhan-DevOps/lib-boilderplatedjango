@@ -1,0 +1,21 @@
+{% extends "account/auth_base.html" %}
+
+{% load i18n %}
+
+{% block subtitle %}{% trans "Login Cancelled" %}{% endblock %}
+
+{% block content %}
+    <div class="user-form-card text-center">
+        <div class="user-form-title">
+            <h2>{% trans "Login Cancelled" %}</h2>
+        </div>
+
+        <div class="user-form">
+            {% url 'account_login' as login_url %}
+            <p>{% blocktrans %}You decided to cancel logging in to our site using one of your existing accounts. If this
+                was a mistake, please proceed to <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+        </div>
+    </div>
+
+{% endblock %}

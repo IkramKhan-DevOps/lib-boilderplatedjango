@@ -23,6 +23,7 @@ CSRF_TRUSTED_ORIGINS = [f'{PROTOCOL}://{host}' for host in ALLOWED_HOSTS]
 LOGOUT_REDIRECT_URL = '/accounts/cross-auth/'
 LOGIN_REDIRECT_URL = '/accounts/cross-auth/'
 GOOGLE_CALLBACK_ADDRESS = f"{BASE_URL}/accounts/google/login/callback/"
+APPLE_CALLBACK_ADDRESS = f"{BASE_URL}/accounts/apple/login/callback/"
 
 ROOT_URLCONF = 'root.urls'
 AUTH_USER_MODEL = 'users.User'
@@ -53,7 +54,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
+    'allauth.mfa',
+
 
     # REST APPS
     'rest_framework',
@@ -61,6 +63,9 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     'dj_rest_auth.registration',
     'drf_yasg',
+
+
+
 
     # YOUR APPS
     'src.core.apps.CoreConfig',
@@ -78,6 +83,8 @@ INSTALLED_APPS = [
     
     
     'notifications',
+
+
 
 ]
 # MAILCHIMP SETTINGS
@@ -109,13 +116,12 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
-AUTHENTICATION_BACKENDS = [
+AUTHENTICATION_BACKENDS = (
     # DJANGO BACKENDS
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-
     # YOUR BACKENDS
-]
+)
 
 TEMPLATES = [
     {
@@ -229,6 +235,35 @@ if ENVIRONMENT != 'server':
         'django_browser_reload.middleware.BrowserReloadMiddleware'
     ]
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'CLIENT_ID': '1021579594890-6m3kiukcsku6j5lpcv0293sjc3qq4830.apps.googleusercontent.com',
+        'SECRET': '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',
+        'SCOPE': ['profile', 'email', 'openid'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+    }
+}
 
-SITE_ID=1
+""" MFA SETUP --------------------------------------------------------------------------------"""
+MFA_ADAPTER = "allauth.mfa.adapter.DefaultMFAAdapter"
+
+
+""" GMAIL SMTP ---------------------------------------------------------------------------------"""
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# SMTP  configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+
+EMAIL_HOST_USER = 'gwtw.mhn@gmail.com'
+EMAIL_HOST_PASSWORD = 'jyrq jbmd grlu vvzs'
+
+
+# Default from email address
+DEFAULT_FROM_EMAIL = 'exarth@info.com'  # Replace with the email address to appear in the 'from' field
+
+"""  ACCOUNT ADAPTER Modify Login/Signup Redirect UR----------------------------------------------------"""
+ACCOUNT_ADAPTER = "src.web.accounts.adapters.MyAccountAdapter"
 

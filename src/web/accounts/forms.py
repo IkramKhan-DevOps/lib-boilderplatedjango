@@ -11,4 +11,3 @@ class UserProfileForm(ModelForm):
             'phone_number'
         ]
 
-
