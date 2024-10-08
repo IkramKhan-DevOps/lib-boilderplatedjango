@@ -5875,7 +5875,7 @@ var Draggable = Evented.extend({
 		if (Math.abs(offset.x) + Math.abs(offset.y) < this.options.clickTolerance) { return; }
 
 		// We assume that the parent container's position, border and scale do not change for the duration of the drag.
-		// Therefore there is no need to account for the position and border (they are eliminated by the subtraction)
+		// Therefore there is no need to auth for the position and border (they are eliminated by the subtraction)
 		// and we can use the cached value for the scale.
 		offset.x /= this._parentScale.x;
 		offset.y /= this._parentScale.y;

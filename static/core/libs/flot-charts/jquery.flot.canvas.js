@@ -273,7 +273,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 				positions = info.positions,
 				lines = info.lines;
 
-			// Text is drawn with baseline 'middle', which we need to account
+			// Text is drawn with baseline 'middle', which we need to auth
 			// for by adding half a line's height to the y position.
 
 			y += info.height / lines.length / 2;

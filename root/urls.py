@@ -7,36 +7,33 @@ from root.settings import ENVIRONMENT, MEDIA_ROOT, STATIC_ROOT
 from src.core.handlers import (
     handler404, handler500
 )
-urlpatterns = []
 
+urlpatterns = []
 
 """ HANDLERS ------------------------------------------------------------------------------------------------------- """
 handler404 = handler404
 handler500 = handler500
 
-
 """ INTERNAL REQUIRED APPS ----------------------------------------------------------------------------------------- """
 urlpatterns += [
     path('', include('src.web.urls')),
-    path('api/', include('src.api.urls')),
-    path('whisper/', include('src.apps.whisper.urls')),
+    path('', include('src.api.urls')),
+    path('', include('src.apps.whisper.urls')),
 ]
-
 
 """ EXTERNAL REQUIRED APPS ----------------------------------------------------------------------------------------- """
 urlpatterns += [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('inbox/notifications/', include('notifications.urls', namespace='notifications')),
+
 ]
-
-
 
 """ STATIC AND MEDIA FILES ----------------------------------------------------------------------------------------- """
 urlpatterns += [
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': STATIC_ROOT}),
 ]
-
 
 """ DEVELOPMENT ONLY -------------------------------------------------------------------------------------------- """
 if ENVIRONMENT != 'server':

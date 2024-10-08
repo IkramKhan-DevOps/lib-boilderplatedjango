@@ -16,6 +16,6 @@ urlpatterns = [
     path('user/<int:pk>/password/reset/', UserPasswordResetView.as_view(), name='user-password-reset-view'),
 
     path('socials/', SocialsView.as_view(), name='social-accounts'),
-    path('remove-social-account/<int:account_id>/', remove_social_account, name='remove_social_account'),
+    path('remove-social-auth/<int:account_id>/', remove_social_account, name='remove_social_account'),
 
 ]
