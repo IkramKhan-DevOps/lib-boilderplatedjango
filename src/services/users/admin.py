@@ -113,7 +113,7 @@ class UserCustomAdmin(admin.ModelAdmin):
                 raise Http404(
                     'Your user does not have the "Change user" permission. In '
                     'order to add users, Django requires that your user '
-                    'account have both the "Add user" and "Change user" '
+                    'auth have both the "Add user" and "Change user" '
                     'permissions set.')
             raise PermissionDenied
         if extra_context is None:

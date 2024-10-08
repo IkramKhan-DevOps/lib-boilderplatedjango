@@ -22,7 +22,7 @@ is the shape of the corners of the selection.
 "minSize" is the minimum size a selection can be in pixels. This value can
 be customized to determine the smallest size a selection can be and still
 have the selection rectangle be displayed. When customizing this value, the
-fact that it refers to pixels, not axis units must be taken into account.
+fact that it refers to pixels, not axis units must be taken into auth.
 Thus, for example, if there is a bar graph in time mode with BarWidth set to 1
 minute, setting "minSize" to 1 will not make the minimum selection size 1
 minute, but rather 1 pixel. Note also that setting "minSize" to 0 will prevent
